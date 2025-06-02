@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="[Insert Project or Subject Name Here] - 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Insert Project or Subject Name Here] - 2025</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0 0 10px 0;
+    }
+    /* HEADER SECTION STYLES */
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    /* NAVIGATION STYLES */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0056b3;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 15px 20px;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background: #003f80;
+    }
+    /* GOOGLE CLASSROOM SECTION STYLES */
+    .google-classroom {
+      background: #fffbcc;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .google-classroom h2 {
+      color: #007bff;
+    }
+    .google-classroom p {
+      font-size: 1.1em;
+    }
+    .google-classroom a {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .google-classroom a:hover {
+      background: #0056b3;
+    }
+    /* NEW: Google Image Styles */
+    .google-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .google-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    /* MAIN CONTENT STYLES */
+    main.content {
+      padding: 20px;
+    }
+    .content-section {
+      display: none; /* Hidden by default; activated via JS */
+      background: #fff;
+      margin: 10px auto;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .content-section h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f4f4f4;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .content-section h4 {
+      margin-top: 15px;
+      color: #555;
+    }
+    .content-section p, .content-section li {
+      margin-bottom: 10px;
+    }
+    .content-section ul, .content-section ol {
+      margin: 10px 0 15px 20px;
+    }
+    .content-section details {
+      background: #e9ecef;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .content-section summary {
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .content-section summary::-webkit-details-marker {
+      color: #007bff;
+    }
+    .content-section details p {
+      margin: 5px 0;
+    }
+    .resource-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-links li {
+      margin: 5px 0;
+    }
+    .resource-links a {
+      color: blue;
+    }
+    /* Styles for quiz feedback */
+    .quiz label[data-result="right"] {
+        color: green;
+        font-weight: bold;
+    }
+    .quiz label[data-result="wrong"] {
+        color: red;
+        text-decoration: line-through;
+    }
+    .quiz-msg {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Style for audio buttons */
+    .quiz button[aria-label^="Read"] {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    /* Ensure all list texts are bold (except quiz lists) */
+    .content-section ul li,
+    .content-section ol li,
+    .resource-links ul li {
+      font-weight: bold;
+    }
+    /* Keep quiz list items normal weight */
+    .quiz li {
+      font-weight: normal;
+    }
+    .resource-links a {
+      font-weight: bold;
+    }
+
+
+
+/* Ensure all summary headings (list links) are bold */
+summary { font-weight: bold; }
+
+  
+
+  /* Make all textareas taller & wider */
+  textarea { min-height: 140px; width: 95%; max-width: 900px; }
+  .wide-textarea { width: 98%; max-width: 1000px; }
+
+    /* Popup box styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .popup-box button:not(.close-popup) {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup-box button:not(.close-popup):hover {
+      background: #0056b3;
+    }
+    .popup-box button.close-popup {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1><b>[Insert Project or Subject Name Here]</b> - 2025</h1>
+  <p>Resources, Projects, and Content for Learning</p>
+  <div class="header-image">
+    <!-- STAFF: Replace 'sample_project.png' with your project image -->
+      <img src="Insert%20Picture%20here.png" alt="Desk Tidy" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
+    <div class="plan-link" style="margin-top:10px;">
+      <!-- STAFF: Update link to your project's plan PDF -->
+      <a href="YourProjectPlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="google-classroom" aria-label="Google Classroom Invitation">
+  <h2>Join Our Google Classroom</h2>
+  <p>Use the code below to join the class and access all online resources:</p>
+  <p><strong>Classroom Code: <span style="color:#d9534f; font-size:1.3em;">[REPLACE WITH YOUR CODE]</span></strong></p>
+  <!-- STAFF: Update the Google Classroom link -->
+  <a href="#">Join Google Classroom</a>
+</section>
+
+<nav aria-label="Main Navigation">
+  <a class="nav-link active" data-section="program" href="#program">Subject Program</a>
+  <a class="nav-link" data-section="syllabus" href="#syllabus">Syllabus</a>
+  <a class="nav-link" data-section="assessment" href="#assessment">Assessments</a>
+  <a class="nav-link" data-section="project-unit" href="#project-unit">[Project Name] Unit</a>
+  <a class="nav-link" data-section="main-theory" href="#main-theory">Main Theory Content</a>
+  <a class="nav-link" data-section="support-activities" href="#support-activities">Support Theory Content (Optional)</a>
+  <a class="nav-link" data-section="advanced-activities" href="#advanced-activities">Advanced Theory Content (Optional)</a>
+</nav>
+
+<main class="content">
+
+  <!-- ===================== PROGRAM SECTION ===================== -->
+  <section class="content-section active" id="program" tabindex="0">
+    <h2>Subject Program</h2>
+    <p>[Brief overview of the program goes here.]</p>
+    <div class="resource-links">
+      <ul>
+        <li><a href="YourProgram.pdf" target="_blank">Download Program (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SYLLABUS SECTION ===================== -->
+  <section class="content-section" id="syllabus" tabindex="0">
+    <h2>Syllabus</h2>
+    <p>[Provide a summary of syllabus outcomes and topics here.]</p>
+    <div class="resource-links">
+      <ul>
+        <li><a href="YourSyllabus.pdf" target="_blank">Download Syllabus (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ASSESSMENT SECTION ===================== -->
+  <section class="content-section" id="assessment" tabindex="0">
+    <h2>Assessments</h2>
+    <p>[Assessment task details and schedules will be added here.]</p>
+    <div class="resource-links">
+      <ul>
+        <li><a href="AssessmentInfo.pdf" target="_blank">Download Assessment Information (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT UNIT SECTION ===================== -->
+  <section class="content-section" id="project-unit" tabindex="0">
+    <h2>[Project Name] Unit</h2>
+    <p>[Add a short overview of this project-based unit here.]</p>
+    <div class="resource-links">
+      <ul>
+        <li><a href="YourProjectOverview.pdf" target="_blank">Download Unit Overview (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ======================= MAIN THEORY CONTENT EXAMPLE (Week 1) ======================= -->
+  <section class="content-section active" id="main-theory" tabindex="0">
+    <h2>Main Theory Content</h2>
+    <details open>
+      <summary><b>Week 1: Sample Topic</b></summary>
+      <article>
+        <h4>Theory Example</h4>
+        <p>Use this area for your main theory notes for the week.</p>
+        <form class="quiz" data-week="1" id="main-week1-quiz">
+          <fieldset>
+            <legend><b>Week 1 Quiz</b></legend>
+            <ol>
+              <li>
+                <p>Which of these is a safe workshop practice? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="main_q1_1" type="radio" value="Wear glasses" /> Wearing safety glasses <button aria-label="Read answer Wearing safety glasses" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="main_q1_1" type="radio" value="No PPE" /> Not using PPE <button aria-label="Read answer Not using PPE" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Main Theory Content - Week 1')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+  </section>
+
+  <!-- ======================= SUPPORT THEORY CONTENT EXAMPLE ======================= -->
+  <section class="content-section" id="support-activities" tabindex="0">
+    <h2>Support Theory Content (Optional)</h2>
+    <details open>
+      <summary><b>Week 1: Support Content</b></summary>
+      <article>
+        <p>This is a simple support explanation for Week 1.</p>
+        <form class="quiz" data-week="s1" id="support-week1-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 1</b></legend>
+            <ol>
+              <li>
+                <p>What should you always wear in the workshop? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q1_1" type="radio" value="Safety glasses" /> Safety glasses <button aria-label="Read answer Safety glasses" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q1_1" type="radio" value="Sandals" /> Sandals <button aria-label="Read answer Sandals" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 1')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+    <details>
+      <summary><b>Week 2: Measuring and Marking</b></summary>
+      <article>
+        <p>Learn about using rulers, tape measures, and squares to mark timber accurately.</p>
+        <form class="quiz" data-week="s2" id="support-week2-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 2</b></legend>
+            <ol>
+              <li>
+                <p>Which tool is best for drawing a 90-degree line across timber? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q2_1" type="radio" value="Combination square" /> Combination square <button aria-label="Read answer Combination square" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q2_1" type="radio" value="Hammer" /> Hammer <button aria-label="Read answer Hammer" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 2')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+
+    <details>
+      <summary><b>Week 3: Timber Types</b></summary>
+      <article>
+        <p>Timber can be hardwood or softwood. Hardwoods come from deciduous trees and are usually denser.</p>
+        <form class="quiz" data-week="s3" id="support-week3-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 3</b></legend>
+            <ol>
+              <li>
+                <p>Which of these is a hardwood? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q3_1" type="radio" value="Oak" /> Oak <button aria-label="Read answer Oak" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q3_1" type="radio" value="Pine" /> Pine <button aria-label="Read answer Pine" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 3')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+
+    <details>
+      <summary><b>Week 4: Hand Tools</b></summary>
+      <article>
+        <p>Common hand tools include saws, chisels, and hammers. Each tool has a specific purpose.</p>
+        <form class="quiz" data-week="s4" id="support-week4-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 4</b></legend>
+            <ol>
+              <li>
+                <p>Which tool cuts along the grain of wood? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q4_1" type="radio" value="Rip saw" /> Rip saw <button aria-label="Read answer Rip saw" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q4_1" type="radio" value="Claw hammer" /> Claw hammer <button aria-label="Read answer Claw hammer" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 4')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+
+    <details>
+      <summary><b>Week 5: Joining Methods</b></summary>
+      <article>
+        <p>Joints such as the butt joint and dowel joint hold pieces of timber together.</p>
+        <form class="quiz" data-week="s5" id="support-week5-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 5</b></legend>
+            <ol>
+              <li>
+                <p>Which joint is easiest for beginners? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q5_1" type="radio" value="Butt joint" /> Butt joint <button aria-label="Read answer Butt joint" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q5_1" type="radio" value="Dovetail joint" /> Dovetail joint <button aria-label="Read answer Dovetail joint" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 5')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+
+    <details>
+      <summary><b>Week 6: Finishing</b></summary>
+      <article>
+        <p>Sanding and applying varnish or paint protect the timber and improve appearance.</p>
+        <form class="quiz" data-week="s6" id="support-week6-quiz">
+          <fieldset>
+            <legend><b>Support Quiz – Week 6</b></legend>
+            <ol>
+              <li>
+                <p>Why do we sand timber before finishing? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="support_q6_1" type="radio" value="Create smooth surface" /> To create a smooth surface <button aria-label="Read answer To create a smooth surface" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br />
+                <label><input name="support_q6_1" type="radio" value="Make it rough" /> To make it rough <button aria-label="Read answer To make it rough" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'Support Content - Week 6')">Check Answers</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+  </section>
+
+  <!-- ======================= ADVANCED THEORY CONTENT EXAMPLE ======================= -->
+  <section class="content-section" id="advanced-activities" tabindex="0">
+    <h2>Advanced Theory Content (Optional)</h2>
+    <details open>
+      <summary><b>Week 1: Advanced Content</b></summary>
+      <article>
+        <p>Try these advanced open-ended questions:</p>
+        <form class="advanced-quiz" id="advanced-week1-quiz">
+          <fieldset>
+            <legend><b>Advanced Activities – Week 1</b></legend>
+            <ol>
+              <li>
+                <p>Explain why safety glasses are important when working with wood. <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <textarea class="wide-textarea" name="adv_q1_1" required></textarea>
+              </li>
+              <li>
+                <p>Describe a situation in the workshop where not following safety rules could be dangerous. <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <textarea class="wide-textarea" name="adv_q1_2" required></textarea>
+              </li>
+              <li>
+                <p>What would you change about safety procedures in your classroom? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <textarea class="wide-textarea" name="adv_q1_3" required></textarea>
+              </li>
+            </ol>
+            <button class="check-advanced-btn" type="button" onclick="submitAdvancedQuiz(this, 'Advanced Content - Week 1')">Check Results</button>
+            <span class="quiz-msg"></span>
+          </fieldset>
+        </form>
+      </article>
+    </details>
+</section>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZg2GV0u5pPE3Juj1OMIlnnTFe9XcYSyh03QSYQc5SEJ4RtYVymMLk7jynJedTPQb89w/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>
