@@ -4018,7 +4018,60 @@ summary { font-weight: bold; }
 </section>
 <section class="content-section" id="advanced-activities" tabindex="0">
   <h2>Advanced Theory Content (Optional)</h2>
-  <p>[Advanced theory content will be added here.]</p>
+  <details open>
+    <summary><strong>Weeks 1 &amp; 2:</strong> Introduction, Workshop Safety, Design Sketches, and Timber Mark-out</summary>
+    <form class="quiz" id="adv-week1-form">
+      <ol>
+        <li>
+          <p>Describe one critical safety precaution to follow when marking and measuring timber.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q1" required></textarea>
+        </li>
+        <li>
+          <p>Explain the importance of creating accurate, detailed design sketches before starting your timber project. Include specific examples of how poor sketching could impact later stages.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q2" required class="wide-textarea"></textarea>
+        </li>
+        <li>
+          <p>Reflect deeply on the relationship between workshop safety protocols and overall project success. Discuss how adherence to safety measures not only protects individuals but also contributes to quality craftsmanship, productivity, and long-term skill development.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q3" required class="wide-textarea"></textarea>
+        </li>
+      </ol>
+      <button type="button" onclick="submitAdvancedQuiz(this, 'adv-week1')">Submit</button>
+      <span class="quiz-msg"></span>
+    </form>
+  </details>
+  <details>
+    <summary><strong>Weeks 3 &amp; 4:</strong> Timber Dressing, Mortising, and Joinery</summary>
+    <form class="quiz" id="adv-week3-form">
+      <ol>
+        <li>
+          <p>What is the primary purpose of the FEWTEL method in timber dressing?
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q1" required></textarea>
+        </li>
+        <li>
+          <p>Compare and contrast the effectiveness of using hand planes versus machinery (like thicknessers) for dressing timber. Discuss the advantages and limitations of each method.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q2" required class="wide-textarea"></textarea>
+        </li>
+        <li>
+          <p>Discuss the factors influencing the strength and durability of mortise and tenon joints. Consider timber selection, grain direction, fitting accuracy, and the impact of precise joinery techniques on the overall quality and longevity of furniture.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q3" required class="wide-textarea"></textarea>
+        </li>
+      </ol>
+      <button type="button" onclick="submitAdvancedQuiz(this, 'adv-week3')">Submit</button>
+      <span class="quiz-msg"></span>
+    </form>
+  </details>
 </section>
 
 
