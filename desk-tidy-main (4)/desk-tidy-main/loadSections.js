@@ -26,23 +26,24 @@ function loadSections() {
 }
 
 async function loadWeeks() {
-  async function fetchWeekSequential(section, count) {
-    const container = document.getElementById(section + '-weeks');
-    if (!container) return;
-    for (let i = 1; i <= count; i++) {
-      const resp = await fetch(`sections/${section}/week${i}.html`);
-      const html = await resp.text();
-      const div = document.createElement('div');
-      div.innerHTML = html;
-      container.appendChild(div);
-    }
-  }
-
-  const promises = [];
   for (const [section, count] of Object.entries(weekCounts)) {
-    promises.push(fetchWeekSequential(section, count));
+    const container = document.getElementById(section + '-weeks');
+    if (!container) continue;
+
+    const list = document.createElement('ul');
+
+    for (let i = 1; i <= count; i++) {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = `sections/${section}/week${i}.html`;
+      link.textContent = `Week ${i}`;
+      link.target = '_blank';
+      li.appendChild(link);
+      list.appendChild(li);
+    }
+
+    container.appendChild(list);
   }
-  return Promise.all(promises);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
