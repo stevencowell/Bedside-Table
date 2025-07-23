@@ -299,41 +299,34 @@ summary { font-weight: bold; }
 
 <main class="content">
 
-  <!-- ===================== PROGRAM SECTION ===================== -->
-  <section class="content-section active" id="program" tabindex="0">
-    <!-- Loaded via sections/program.html -->
-  </section>
-
-  <!-- ===================== SYLLABUS SECTION ===================== -->
-  <section class="content-section" id="syllabus" tabindex="0">
-    <!-- Loaded via sections/syllabus.html -->
-  </section>
-
-  <!-- ===================== ASSESSMENT SECTION ===================== -->
-  <section class="content-section" id="assessment" tabindex="0">
-    <!-- Loaded via sections/assessment.html -->
-  </section>
-
-  <!-- ===================== PROJECT UNIT SECTION ===================== -->
-  <section class="content-section" id="project-unit" tabindex="0">
-    <!-- Loaded via sections/project-unit.html -->
-  </section>
-
-  <!-- ======================= MAIN THEORY CONTENT ======================= -->
-  <section class="content-section" id="main-theory" tabindex="0">
-    <!-- Loaded via sections/main-theory.html -->
-  </section>
-
-  <!-- ======================= SUPPORT THEORY CONTENT =================== -->
-  <section class="content-section" id="support-activities" tabindex="0">
-    <!-- Loaded via sections/support-activities.html -->
-  </section>
-
-  <!-- ======================= ADVANCED THEORY CONTENT ================== -->
-  <section class="content-section" id="advanced-activities" tabindex="0">
-    <!-- Loaded via sections/advanced-activities.html -->
-  </section>
-
+<main class="content">
+<details>
+    <summary><strong>Weeks 15 &amp; 16:</strong> Chemical Safety, Polishing, Sustainability, and Environmental Responsibility</summary>
+    <form class="quiz" id="adv-week15-form">
+      <ol>
+        <li>
+          <p>Why is adequate ventilation essential when handling woodworking chemicals?
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q1" required></textarea>
+        </li>
+        <li>
+          <p>Describe the importance of Material Safety Data Sheets (MSDS) in woodworking, focusing on their role in ensuring safe chemical handling and emergency preparedness.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q2" required class="wide-textarea"></textarea>
+        </li>
+        <li>
+          <p>Evaluate the long-term implications of adopting sustainable practices in woodworking projects. Discuss how responsible chemical use, waste reduction, and careful timber selection can significantly impact both environmental sustainability and woodworking industry practices.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q3" required class="wide-textarea"></textarea>
+        </li>
+      </ol>
+      <button type="button" onclick="submitAdvancedQuiz(this, 'adv-week15')">Submit</button>
+      <span class="quiz-msg"></span>
+    </form>
+  </details>
 </main>
 
 <!-- Popup for results -->
@@ -356,7 +349,6 @@ summary { font-weight: bold; }
   </div>
 </div>
 
-<script src="loadSections.js"></script>
 <script>
     // Script for handling navigation link clicks and toggling active sections
     document.addEventListener('DOMContentLoaded', () => {
