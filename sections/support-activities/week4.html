@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Stage 5 Industrial Technology Timber - Bedside Table Project - 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage 5 Industrial Technology Timber - Bedside Table Project - 2025</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0 0 10px 0;
+    }
+    /* HEADER SECTION STYLES */
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    /* NAVIGATION STYLES */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0056b3;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 15px 20px;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background: #003f80;
+    }
+    /* GOOGLE CLASSROOM SECTION STYLES */
+    .google-classroom {
+      background: #fffbcc;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .google-classroom h2 {
+      color: #007bff;
+    }
+    .google-classroom p {
+      font-size: 1.1em;
+    }
+    .google-classroom a {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .google-classroom a:hover {
+      background: #0056b3;
+    }
+    /* NEW: Google Image Styles */
+    .google-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .google-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    /* MAIN CONTENT STYLES */
+    main.content {
+      padding: 20px;
+    }
+    .content-section {
+      display: none; /* Hidden by default; activated via JS */
+      background: #fff;
+      margin: 10px auto;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .content-section h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f4f4f4;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .content-section h4 {
+      margin-top: 15px;
+      color: #555;
+    }
+    .content-section p, .content-section li {
+      margin-bottom: 10px;
+    }
+    .content-section ul, .content-section ol {
+      margin: 10px 0 15px 20px;
+    }
+    .content-section details {
+      background: #e9ecef;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .content-section summary {
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .content-section summary::-webkit-details-marker {
+      color: #007bff;
+    }
+    .content-section details p {
+      margin: 5px 0;
+    }
+    .resource-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-links li {
+      margin: 5px 0;
+    }
+    .resource-links a {
+      color: blue;
+    }
+    /* Styles for quiz feedback */
+    .quiz label[data-result="right"] {
+        color: green;
+        font-weight: bold;
+    }
+    .quiz label[data-result="wrong"] {
+        color: red;
+        text-decoration: line-through;
+    }
+    .quiz-msg {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Style for audio buttons */
+    .quiz button[aria-label^="Read"] {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    /* Ensure all list texts are bold (except quiz lists) */
+    .content-section ul li,
+    .content-section ol li,
+    .resource-links ul li {
+      font-weight: bold;
+    }
+    /* Keep quiz list items normal weight */
+    .quiz li {
+      font-weight: normal;
+    }
+    .resource-links a {
+      font-weight: bold;
+    }
+
+
+
+/* Ensure all summary headings (list links) are bold */
+summary { font-weight: bold; }
+
+  
+
+  /* Make all textareas taller & wider */
+  textarea { min-height: 140px; width: 95%; max-width: 900px; }
+  .wide-textarea { width: 98%; max-width: 1000px; }
+
+    /* Popup box styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .popup-box button:not(.close-popup) {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup-box button:not(.close-popup):hover {
+      background: #0056b3;
+    }
+    .popup-box button.close-popup {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1><b>Stage 5 Industrial Technology Timber - Bedside Table Project</b> - 2025</h1>
+  <p>Resources, Projects, and Content for Learning</p>
+  <div class="header-image">
+    <!-- STAFF: Replace 'sample_project.png' with your project image -->
+      <img src="table.png" alt="Bedside Table" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
+    <div class="plan-link" style="margin-top:10px;">
+      <!-- STAFF: Update link to your project's plan PDF -->
+      <a href="BedsideTablePlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="google-classroom" aria-label="Google Classroom Invitation">
+  <h2>Join Our Google Classroom</h2>
+  <p>Use the code below to join the class and access all online resources:</p>
+  <p><strong>Classroom Code: <span style="color:#d9534f; font-size:1.3em;">bedside23</span></strong></p>
+  <!-- STAFF: Update the Google Classroom link -->
+  <a href="https://classroom.google.com" target="_blank">Join Google Classroom</a>
+</section>
+
+<nav aria-label="Main Navigation">
+  <a class="nav-link active" data-section="program" href="#program">Subject Program</a>
+  <a class="nav-link" data-section="syllabus" href="#syllabus">Syllabus</a>
+  <a class="nav-link" data-section="assessment" href="#assessment">Assessments</a>
+  <a class="nav-link" data-section="project-unit" href="#project-unit">Bedside Table Project Unit</a>
+  <a class="nav-link" data-section="main-theory" href="#main-theory">Main Theory Content</a>
+  <a class="nav-link" data-section="support-activities" href="#support-activities">Support Theory Content (Optional)</a>
+  <a class="nav-link" data-section="advanced-activities" href="#advanced-activities">Advanced Theory Content (Optional)</a>
+</nav>
+
+<main class="content">
+
+<main class="content">
+<details>
+    <summary><strong>Weeks 7 &amp; 8:</strong> Timber Thicknessing, Orthogonal Drawings, Dry Clamping, and WMS</summary>
+    <article>
+      <h4>Week 7: Thicknesser SOP and Orthogonal Drawings</h4>
+      <p>Efficient timber preparation and clear drawings are critical for precise construction:</p>
+      <ul>
+        <li><b>Thicknesser SOP:</b> Remove material gradually, feed timber with the grain, and ensure blades are sharp.</li>
+        <li><b>Orthogonal Drawings:</b> Provide accurate front, top, and side views with clear annotations.</li>
+      </ul>
+      <h4>Practical Activity</h4>
+      <ul>
+        <li>Safely operate the thicknesser to achieve correct timber dimensions.</li>
+        <li>Create detailed orthogonal drawings for your bedside table.</li>
+      </ul>
+      <h4>Resources</h4>
+      <div class="resource-links">
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=hwmUhY-GH8c" target="_blank">Thicknesser Operation and Safety</a></li>
+          <li><a href="https://www.design-technology.info/orthographicprojection/" target="_blank">Orthogonal Drawing Basics</a></li>
+        </ul>
+      </div>
+      <form class="quiz" data-week="support7" id="support7-quiz" style="margin-top: 1.5rem;">
+        <fieldset>
+          <legend><strong>Scenario-Based Quiz (Week 7)</strong></legend>
+          <ol>
+            <li>
+              <p>Why feed timber through a thicknesser in the direction of the grain? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q1_s7" type="radio" value="Wear"/> It reduces machine wear <button aria-label="Read answer It reduces machine wear" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q1_s7" type="radio" value="Smooth"/> It minimises tear-out for a smoother surface <button aria-label="Read answer It minimises tear-out for a smoother surface" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q1_s7" type="radio" value="Speed"/> It increases speed <button aria-label="Read answer It increases speed" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q1_s7" type="radio" value="Energy"/> It uses less energy <button aria-label="Read answer It uses less energy" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>If timber jams in a thicknesser, what's the best immediate action? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label data-correct="true"><input name="q2_s7" type="radio" value="Stop"/> Stop the machine and check settings <button aria-label="Read answer Stop the machine and check settings" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q2_s7" type="radio" value="Push"/> Push harder <button aria-label="Read answer Push harder" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q2_s7" type="radio" value="Reverse"/> Reverse feed direction <button aria-label="Read answer Reverse feed direction" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q2_s7" type="radio" value="Different"/> Use a different machine <button aria-label="Read answer Use a different machine" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>Why include all views in orthogonal drawings? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label data-correct="true"><input name="q3_s7" type="radio" value="Dimensions"/> To provide complete and clear dimensions <button aria-label="Read answer To provide complete and clear dimensions" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s7" type="radio" value="Space"/> To fill page space <button aria-label="Read answer To fill page space" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s7" type="radio" value="Complicate"/> To complicate the drawing <button aria-label="Read answer To complicate the drawing" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s7" type="radio" value="Requirement"/> To meet drawing requirements <button aria-label="Read answer To meet drawing requirements" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>What safety equipment is essential when using a thicknesser? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q4_s7" type="radio" value="Gloves"/> Gloves only <button aria-label="Read answer Gloves only" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q4_s7" type="radio" value="None"/> No equipment needed <button aria-label="Read answer No equipment needed" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q4_s7" type="radio" value="PPE"/> Hearing protection and safety glasses <button aria-label="Read answer Hearing protection and safety glasses" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q4_s7" type="radio" value="Respirator"/> Respirator only <button aria-label="Read answer Respirator only" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>Why is regular inspection of thicknesser blades important? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q5_s7" type="radio" value="Faster"/> To ensure faster operation <button aria-label="Read answer To ensure faster operation" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q5_s7" type="radio" value="Quality"/> To maintain cutting quality and safety <button aria-label="Read answer To maintain cutting quality and safety" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q5_s7" type="radio" value="Aesthetic"/> To comply with aesthetic guidelines <button aria-label="Read answer To comply with aesthetic guidelines" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q5_s7" type="radio" value="PPE"/> To avoid using PPE <button aria-label="Read answer To avoid using PPE" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+          </ol>
+          <button class="check-btn" type="button" onclick="submitQuiz(this, 'support-week7')">Check answers</button>
+          <span class="quiz-msg" id="support-week7-msg"></span>
+        </fieldset>
+      </form>
+      <h4>Week 8: Dry Clamping, Work Method Statements (WMS), and SOP Review</h4>
+      <p>Dry clamping and clear method statements ensure smooth assembly and safe practice:</p>
+      <ul>
+        <li><b>Dry Clamping:</b> Test the assembly without glue to identify issues.</li>
+        <li><b>Work Method Statements:</b> Outline task sequences, safety measures, and required PPE.</li>
+        <li><b>Review SOPs:</b> Reinforce safe and effective operating procedures.</li>
+      </ul>
+      <h4>Practical Activity</h4>
+      <ul>
+        <li>Conduct a dry clamp of your bedside table.</li>
+        <li>Develop detailed Work Method Statements for project tasks.</li>
+      </ul>
+      <h4>Resources</h4>
+      <div class="resource-links">
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=C3V7K1dAblw" target="_blank">Effective Clamping Techniques</a></li>
+          <li><a href="https://www.worksafe.vic.gov.au/work-method-statements" target="_blank">Work Method Statements Guide</a></li>
+        </ul>
+      </div>
+      <form class="quiz" data-week="support8" id="support8-quiz" style="margin-top: 1.5rem;">
+        <fieldset>
+          <legend><strong>Scenario-Based Quiz (Week 8)</strong></legend>
+          <ol>
+            <li>
+              <p>What's the main purpose of dry clamping? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q1_s8" type="radio" value="Speed"/> Speeding up glue drying <button aria-label="Read answer Speeding up glue drying" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q1_s8" type="radio" value="Identify"/> Identifying assembly issues and correcting them early <button aria-label="Read answer Identifying assembly issues and correcting them early" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q1_s8" type="radio" value="Tighter"/> Making joints tighter <button aria-label="Read answer Making joints tighter" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q1_s8" type="radio" value="Reduce"/> Reducing tool usage <button aria-label="Read answer Reducing tool usage" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>What information is critical in a Work Method Statement (WMS)? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q2_s8" type="radio" value="Tools"/> Only the tools needed <button aria-label="Read answer Only the tools needed" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q2_s8" type="radio" value="Sequence"/> Task sequence, safety measures, and required PPE <button aria-label="Read answer Task sequence, safety measures, and required PPE" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q2_s8" type="radio" value="Colour"/> Colour choices for finishing <button aria-label="Read answer Colour choices for finishing" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q2_s8" type="radio" value="Cost"/> Timber costs only <button aria-label="Read answer Timber costs only" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>Why review Standard Operating Procedures (SOPs) regularly? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label data-correct="true"><input name="q3_s8" type="radio" value="Safe"/> To ensure consistent safe practices <button aria-label="Read answer To ensure consistent safe practices" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s8" type="radio" value="Speed"/> To increase project speed <button aria-label="Read answer To increase project speed" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s8" type="radio" value="Simplify"/> To simplify woodworking tasks <button aria-label="Read answer To simplify woodworking tasks" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q3_s8" type="radio" value="Reduce"/> To reduce project documentation <button aria-label="Read answer To reduce project documentation" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>If you notice misalignment during dry clamping, what should you do? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q4_s8" type="radio" value="Ignore"/> Ignore it <button aria-label="Read answer Ignore it" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q4_s8" type="radio" value="Glue"/> Proceed to glue-up anyway <button aria-label="Read answer Proceed to glue-up anyway" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q4_s8" type="radio" value="Adjust"/> Adjust components for precise fit before final assembly <button aria-label="Read answer Adjust components for precise fit before final assembly" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q4_s8" type="radio" value="Start"/> Start over completely <button aria-label="Read answer Start over completely" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+            <li>
+              <p>Effective sequencing of tasks within a WMS ensures: <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+              <label><input name="q5_s8" type="radio" value="Fewer"/> Fewer safety checks <button aria-label="Read answer Fewer safety checks" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q5_s8" type="radio" value="Clutter"/> Increased workshop clutter <button aria-label="Read answer Increased workshop clutter" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label data-correct="true"><input name="q5_s8" type="radio" value="Efficient"/> Efficient, logical, and safe workflow <button aria-label="Read answer Efficient, logical, and safe workflow" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+              <label><input name="q5_s8" type="radio" value="Quality"/> Reduced project quality <button aria-label="Read answer Reduced project quality" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+            </li>
+          </ol>
+          <button class="check-btn" type="button" onclick="submitQuiz(this, 'support-week8')">Check answers</button>
+          <span class="quiz-msg" id="support-week8-msg"></span>
+        </fieldset>
+      </form>
+    </article>
+  </details>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZg2GV0u5pPE3Juj1OMIlnnTFe9XcYSyh03QSYQc5SEJ4RtYVymMLk7jynJedTPQb89w/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>
