@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+  .audio-btn {
+      font-size: 0.8em;
+      padding: 2px 4px;
+  }
+  </style>
   <meta charset="utf-8" />
   <meta name="description" content="Stage 5 Industrial Technology Timber - Bedside Table Project - 2025" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -344,6 +350,14 @@ summary { font-weight: bold; }
     <p>You can now visit Google Classroom to record your work.</p>
     <!-- STAFF: Replace href with the project link when available -->
     <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+</div>
+</div>
+
+<!-- Popup confirming submission before Google Classroom link -->
+<div id="submittedPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <p>Your results have been submitted.</p>
+    <button id="submittedOkBtn">OK</button>
   </div>
 </div>
 
@@ -359,7 +373,7 @@ summary { font-weight: bold; }
 <script src="loadSections.js"></script>
 <script>
     // Script for handling navigation link clicks and toggling active sections
-    document.addEventListener('DOMContentLoaded', () => {
+    function initPage() {
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.content-section');
 
@@ -408,7 +422,7 @@ summary { font-weight: bold; }
 
         // Listen for hash changes (e.g., browser back/forward buttons)
         window.addEventListener('hashchange', setActiveSection);
-    });
+    }
 </script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZg2GV0u5pPE3Juj1OMIlnnTFe9XcYSyh03QSYQc5SEJ4RtYVymMLk7jynJedTPQb89w/exec";
@@ -454,6 +468,17 @@ function showResultPopup(url) {
   if (overlay) overlay.classList.add('active');
 }
 
+function showSubmittedPopup(url) {
+  const overlay = document.getElementById('submittedPopup');
+  const btn = document.getElementById('submittedOkBtn');
+  if (!overlay || !btn) { showResultPopup(url); return; }
+  overlay.classList.add('active');
+  btn.onclick = () => {
+    overlay.classList.remove('active');
+    showResultPopup(url);
+  };
+}
+
 function askForName() {
   return new Promise(resolve => {
     const overlay = document.getElementById('namePopup');
@@ -470,14 +495,49 @@ function askForName() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function shuffleQuizAnswers() {
+  document.querySelectorAll('form.quiz li').forEach(li => {
+    const labels = Array.from(li.querySelectorAll('label'));
+    if (labels.length <= 1) return;
+    li.querySelectorAll('br').forEach(br => br.remove());
+    labels.forEach(l => l.remove());
+    for (let i = labels.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [labels[i], labels[j]] = [labels[j], labels[i]];
+    }
+    labels.forEach((label, idx) => {
+      li.appendChild(label);
+      if (idx < labels.length - 1) li.appendChild(document.createElement('br'));
+    });
+  });
+}
+
+function initQuizFeatures() {
+  shuffleQuizAnswers();
   const closeBtn = document.querySelector('#resultPopup .close-popup');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       document.getElementById('resultPopup').classList.remove('active');
     });
   }
-});
+  document.querySelectorAll('form.quiz li > p button').forEach(btn => {
+    if (!btn.hasAttribute('aria-label')) {
+      btn.setAttribute('aria-label', 'Read question aloud');
+    }
+  });
+  document.querySelectorAll('form.quiz label').forEach(label => {
+    if (!label.querySelector('button')) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '🔊';
+      const answerText = label.textContent.trim();
+      btn.setAttribute('aria-label', 'Read answer ' + answerText);
+      btn.addEventListener('click', e => { e.preventDefault(); speakText(btn); });
+      label.appendChild(document.createTextNode(' '));
+      label.appendChild(btn);
+    }
+  });
+}
 
 function submitQuiz(btn, quizType) {
   const form = btn.closest('form');
@@ -513,19 +573,33 @@ function submitQuiz(btn, quizType) {
   form.querySelector('.quiz-msg').textContent = msg;
 
   askForName().then(name => {
+    let quizNumber = '';
+    if (/^[MSA]\d+/i.test(quizType)) {
+      quizNumber = quizType.toUpperCase();
+    } else {
+      const numMatch = quizType.match(/Week\s*(\d+)/i);
+      const prefix = /Support/i.test(quizType)
+        ? 'S'
+        : /Advanced/i.test(quizType)
+        ? 'A'
+        : 'M';
+      quizNumber = prefix + (numMatch ? String(numMatch[1]).padStart(3, '0') : '');
+    }
     fetch(SCRIPT_URL, {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         quizType,
+        quizNumber,
         quiz: results,
         score: correct + "/" + total,
         studentName: name,
         timestamp: new Date().toISOString()
       })
+    }).then(() => {
+      showSubmittedPopup(CLASSROOM_LINK);
     });
-    showResultPopup(CLASSROOM_LINK);
   });
 }
 
@@ -546,18 +620,32 @@ function submitAdvancedQuiz(btn, quizType) {
   form.querySelector('.quiz-msg').textContent =
     'Responses submitted. Your teacher will review them.';
 
+  let quizNumber = '';
+  if (/^[MSA]\d+/i.test(quizType)) {
+    quizNumber = quizType.toUpperCase();
+  } else {
+    const numMatch = quizType.match(/Week\s*(\d+)/i);
+    const prefix = /Support/i.test(quizType)
+      ? 'S'
+      : /Advanced/i.test(quizType)
+      ? 'A'
+      : 'M';
+    quizNumber = prefix + (numMatch ? String(numMatch[1]).padStart(3, '0') : '');
+  }
   fetch(SCRIPT_URL, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       quizType,
+      quizNumber,
       studentName: studentName.trim(),
       responses,
       timestamp: new Date().toISOString()
     })
+  }).then(() => {
+    showSubmittedPopup(CLASSROOM_LINK);
   });
-  showResultPopup(CLASSROOM_LINK);
 }
 </script>
 </body>
