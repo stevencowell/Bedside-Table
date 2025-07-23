@@ -194,8 +194,27 @@
     .quiz li {
       font-weight: normal;
     }
+    /* Make quiz questions bold */
+    .quiz li > p {
+      font-weight: bold;
+    }
+    .quiz label {
+      font-weight: normal;
+    }
     .resource-links a {
       font-weight: bold;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+    }
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 8px;
     }
 
 
@@ -550,7 +569,7 @@ function submitQuiz(btn, quizType) {
     radios.forEach(radio => {
       if (radio.checked) {
         answered = true;
-        if (radio.hasAttribute('data-correct')) userCorrect = true;
+        if (radio.getAttribute('data-correct') === 'true') userCorrect = true;
       }
       // Reset label
       radio.parentElement.removeAttribute('data-result');
