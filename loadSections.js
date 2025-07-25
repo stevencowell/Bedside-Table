@@ -27,22 +27,22 @@ function loadSections() {
 
 async function loadWeeks() {
   for (const [section, count] of Object.entries(weekCounts)) {
+    // Get the container div where week content should appear (e.g. "main-theory-weeks")
     const container = document.getElementById(section + '-weeks');
     if (!container) continue;
 
-    const list = document.createElement('ul');
-
+    // Fetch each week file and insert its <details> content
     for (let i = 1; i <= count; i++) {
-      const li = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = `sections/${section}/week${i}.html`;
-      link.textContent = `Week ${i}`;
-      link.target = '_blank';
-      li.appendChild(link);
-      list.appendChild(li);
-    }
+      const resp = await fetch(`sections/${section}/week${i}.html`);
+      const text = await resp.text();
 
-    container.appendChild(list);
+      // Parse the fetched HTML to extract the <details> block (or fall back to <body>)
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+      const details = doc.querySelector('details') || doc.body;
+
+      container.appendChild(details.cloneNode(true));
+    }
   }
 }
 
