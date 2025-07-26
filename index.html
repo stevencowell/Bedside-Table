@@ -599,7 +599,7 @@ function submitQuiz(btn, quizType) {
       const numMatch = quizType.match(/Week\s*(\d+)/i);
       const prefix = /Support/i.test(quizType)
         ? 'S'
-        : /Advanced/i.test(quizType)
+        : /(Advanced|Adv)/i.test(quizType)
         ? 'A'
         : 'M';
       quizNumber = prefix + (numMatch ? String(numMatch[1]).padStart(3, '0') : '');
@@ -646,7 +646,7 @@ function submitAdvancedQuiz(btn, quizType) {
     const numMatch = quizType.match(/Week\s*(\d+)/i);
     const prefix = /Support/i.test(quizType)
       ? 'S'
-      : /Advanced/i.test(quizType)
+      : /(Advanced|Adv)/i.test(quizType)
       ? 'A'
       : 'M';
     quizNumber = prefix + (numMatch ? String(numMatch[1]).padStart(3, '0') : '');
