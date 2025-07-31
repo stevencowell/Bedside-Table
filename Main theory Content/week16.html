@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Stage 5 Industrial Technology Timber - Bedside Table Project - 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedside Table Project</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0 0 10px 0;
+    }
+    /* HEADER SECTION STYLES */
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    /* NAVIGATION STYLES */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0056b3;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 15px 20px;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background: #003f80;
+    }
+    /* GOOGLE CLASSROOM SECTION STYLES */
+    .google-classroom {
+      background: #fffbcc;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .google-classroom h2 {
+      color: #007bff;
+    }
+    .google-classroom p {
+      font-size: 1.1em;
+    }
+    .google-classroom a {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .google-classroom a:hover {
+      background: #0056b3;
+    }
+    /* NEW: Google Image Styles */
+    .google-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .google-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    /* MAIN CONTENT STYLES */
+    main.content {
+      padding: 20px;
+    }
+    .content-section {
+      display: none; /* Hidden by default; activated via JS */
+      background: #fff;
+      margin: 10px auto;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .content-section h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f4f4f4;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .content-section h4 {
+      margin-top: 15px;
+      color: #555;
+    }
+    .content-section p, .content-section li {
+      margin-bottom: 10px;
+    }
+    .content-section ul, .content-section ol {
+      margin: 10px 0 15px 20px;
+    }
+    .content-section details {
+      background: #e9ecef;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .content-section summary {
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .content-section summary::-webkit-details-marker {
+      color: #007bff;
+    }
+    .content-section details p {
+      margin: 5px 0;
+    }
+    .resource-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-links li {
+      margin: 5px 0;
+    }
+    .resource-links a {
+      color: blue;
+    }
+    /* Styles for quiz feedback */
+    .quiz label[data-result="right"] {
+        color: green;
+        font-weight: bold;
+    }
+    .quiz label[data-result="wrong"] {
+        color: red;
+        text-decoration: line-through;
+    }
+    .quiz-msg {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Style for audio buttons */
+    .quiz button[aria-label^="Read"] {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    /* Ensure all list texts are bold (except quiz lists) */
+    .content-section ul li,
+    .content-section ol li,
+    .resource-links ul li {
+      font-weight: bold;
+    }
+    /* Keep quiz list items normal weight */
+    .quiz li {
+      font-weight: normal;
+    }
+    .resource-links a {
+      font-weight: bold;
+    }
+
+
+
+/* Ensure all summary headings (list links) are bold */
+summary { font-weight: bold; }
+
+  
+
+  /* Make all textareas taller & wider */
+  textarea { min-height: 140px; width: 95%; max-width: 900px; }
+  .wide-textarea { width: 98%; max-width: 1000px; }
+
+    /* Popup box styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .popup-box button:not(.close-popup) {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup-box button:not(.close-popup):hover {
+      background: #0056b3;
+    }
+    .popup-box button.close-popup {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1><b>Stage 5 Industrial Technology Timber - Bedside Table Project</b> - 2025</h1>
+  <p>Resources, Projects, and Content for Learning</p>
+  <div class="header-image">
+    <!-- STAFF: Replace 'sample_project.png' with your project image -->
+      <img src="table.png" alt="Bedside Table" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
+    <div class="plan-link" style="margin-top:10px;">
+      <!-- STAFF: Update link to your project's plan PDF -->
+      <a href="BedsideTablePlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="google-classroom" aria-label="Google Classroom Invitation">
+  <h2>Join Our Google Classroom</h2>
+  <p>Use the code below to join the class and access all online resources:</p>
+  <p><strong>Classroom Code: <span style="color:#d9534f; font-size:1.3em;">bedside23</span></strong></p>
+  <!-- STAFF: Update the Google Classroom link -->
+  <a href="https://classroom.google.com" target="_blank">Join Google Classroom</a>
+</section>
+
+<nav aria-label="Main Navigation">
+  <a class="nav-link active" data-section="program" href="#program">Subject Program</a>
+  <a class="nav-link" data-section="syllabus" href="#syllabus">Syllabus</a>
+  <a class="nav-link" data-section="assessment" href="#assessment">Assessments</a>
+  <a class="nav-link" data-section="project-unit" href="#project-unit">Bedside Table Project Unit</a>
+  <a class="nav-link" data-section="main-theory" href="#main-theory">Main Theory Content</a>
+  <a class="nav-link" data-section="support-activities" href="#support-activities">Support Theory Content (Optional)</a>
+  <a class="nav-link" data-section="advanced-activities" href="#advanced-activities">Advanced Theory Content (Optional)</a>
+</nav>
+
+<main class="content">
+
+<main class="content">
+<details>
+          <summary><strong>Week 16:</strong> Polishing Techniques, Sustainability, and Environmental Impact</summary>
+          <article>
+            <h4>Theory Content</h4>
+            <p>In Week 16, you'll focus on final polishing techniques to enhance your project's finish. Additionally, we'll discuss sustainability and explore the environmental impact of timber use, emphasising responsible woodworking practices.</p>
+            <h4>Polishing Techniques</h4>
+            <p>Proper polishing methods ensure a professional-quality finish:</p>
+            <ul>
+              <li><b>Surface Preparation:</b> Fine sanding to remove imperfections and create a smooth surface.</li>
+              <li><b>Polishing Methods:</b> Apply polishing compounds with cloth, buffer, or machine polisher.</li>
+              <li><b>Final Inspection:</b> Assess polished surfaces under good lighting for evenness and gloss.</li>
+            </ul>
+            <h4>Sustainability and Environmental Impact</h4>
+            <p>Understand the environmental implications of timber sourcing:</p>
+            <ul>
+              <li><b>Sustainable Forestry:</b> Select timber certified by bodies such as FSC to ensure ethical sourcing.</li>
+              <li><b>Reducing Waste:</b> Plan effectively to minimise waste through careful measurements and precise cutting.</li>
+              <li><b>Environmental Responsibility:</b> Use eco-friendly products and finishes to reduce your ecological footprint.</li>
+            </ul>
+            <h4>Practical Activity</h4>
+            <ul>
+              <li>Polish your bedside table surfaces carefully, achieving a professional standard.</li>
+              <li>Research the sustainability of materials used in your project and create a brief report summarising your findings.</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="resource-links">
+              <ul>
+                <li><a href="https://www.youtube.com/watch?v=TeUyqTJ7A8E" target="_blank">Professional Polishing Tips (YouTube)</a></li>
+                <li><a href="https://www.fsc.org/en" target="_blank">Sustainable Timber Use</a></li>
+              </ul>
+            </div>
+            <form class="quiz" data-week="16" id="week16-quiz" style="margin-top: 1.5rem;">
+              <fieldset>
+                <legend><strong>Have you been paying attention? – Week 16 Quiz</strong></legend>
+                <ol>
+                  <li>
+                    <p>Why is fine sanding critical before polishing your furniture? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label data-correct="true"><input name="q1_16" type="radio" value="Smooth"/> To eliminate surface imperfections, ensuring a smooth, glossy finish. <button aria-label="Read answer To eliminate surface imperfections, ensuring a smooth, glossy finish." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q1_16" type="radio" value="Speed"/> To speed up polishing. <button aria-label="Read answer To speed up polishing." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q1_16" type="radio" value="Guidelines"/> To comply with project guidelines. <button aria-label="Read answer To comply with project guidelines." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q1_16" type="radio" value="Costs"/> To minimise material costs. <button aria-label="Read answer To minimise material costs." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>Which factor is essential when choosing sustainable timber for your projects? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label data-correct="true"><input name="q2_16" type="radio" value="Certification"/> Certification from recognised sustainable forestry bodies like FSC. <button aria-label="Read answer Certification from recognised sustainable forestry bodies like FSC." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q2_16" type="radio" value="Colour"/> Timber colour. <button aria-label="Read answer Timber colour." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q2_16" type="radio" value="Cutting"/> Ease of cutting. <button aria-label="Read answer Ease of cutting." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q2_16" type="radio" value="Local"/> Local availability only. <button aria-label="Read answer Local availability only." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>How can effective planning help in reducing timber waste? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q3_16" type="radio" value="Speed"/> It increases the speed of assembly. <button aria-label="Read answer It increases the speed of assembly." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q3_16" type="radio" value="Simplify"/> It simplifies the polishing process. <button aria-label="Read answer It simplifies the polishing process." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q3_16" type="radio" value="Accurate"/> It ensures accurate measurements and reduces excess off-cuts. <button aria-label="Read answer It ensures accurate measurements and reduces excess off-cuts." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q3_16" type="radio" value="Polishing"/> It reduces the need for polishing. <button aria-label="Read answer It reduces the need for polishing." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>Which polishing method generally achieves the most professional and consistent finish? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q4_16" type="radio" value="Cloth"/> Using rough cloth only. <button aria-label="Read answer Using rough cloth only." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q4_16" type="radio" value="Buffer"/> Applying polishing compounds with a mechanical buffer. <button aria-label="Read answer Applying polishing compounds with a mechanical buffer." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q4_16" type="radio" value="Hand"/> Polishing quickly by hand. <button aria-label="Read answer Polishing quickly by hand." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q4_16" type="radio" value="Thick"/> Applying a single thick coat of polish. <button aria-label="Read answer Applying a single thick coat of polish." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>What environmental benefit does choosing FSC-certified timber provide? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q5_16" type="radio" value="Cost"/> Increased timber cost. <button aria-label="Read answer Increased timber cost." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q5_16" type="radio" value="Assurance"/> Assurance that timber comes from sustainably managed forests. <button aria-label="Read answer Assurance that timber comes from sustainably managed forests." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q5_16" type="radio" value="Delivery"/> Faster delivery times. <button aria-label="Read answer Faster delivery times." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q5_16" type="radio" value="Complex"/> Higher project complexity. <button aria-label="Read answer Higher project complexity." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>How should you assess polished surfaces effectively? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label data-correct="true"><input name="q6_16" type="radio" value="Lighting"/> Inspecting under good lighting for evenness and gloss. <button aria-label="Read answer Inspecting under good lighting for evenness and gloss." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q6_16" type="radio" value="Dim"/> Quickly checking in dim lighting. <button aria-label="Read answer Quickly checking in dim lighting." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q6_16" type="radio" value="Later"/> Waiting until all project stages are complete. <button aria-label="Read answer Waiting until all project stages are complete." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q6_16" type="radio" value="Touch"/> By touch alone. <button aria-label="Read answer By touch alone." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>What primary benefit do eco-friendly finishing products offer? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q7_16" type="radio" value="Cheap"/> They always cost less. <button aria-label="Read answer They always cost less." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q7_16" type="radio" value="NoPolish"/> They eliminate the need for polishing. <button aria-label="Read answer They eliminate the need for polishing." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q7_16" type="radio" value="Eco"/> They significantly reduce environmental impact and health risks. <button aria-label="Read answer They significantly reduce environmental impact and health risks." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q7_16" type="radio" value="Dry"/> They increase drying times. <button aria-label="Read answer They increase drying times." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>Why should you document the sustainability of materials used? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label data-correct="true"><input name="q8_16" type="radio" value="Awareness"/> To increase awareness and accountability for environmental impact. <button aria-label="Read answer To increase awareness and accountability for environmental impact." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q8_16" type="radio" value="Appearance"/> To enhance the appearance of your project. <button aria-label="Read answer To enhance the appearance of your project." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q8_16" type="radio" value="Compliance"/> To comply with school regulations. <button aria-label="Read answer To comply with school regulations." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q8_16" type="radio" value="Time"/> To reduce polishing time. <button aria-label="Read answer To reduce polishing time." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>Using mechanical polishers effectively requires what important safety practice? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q9_16" type="radio" value="Outdoors"/> Working outdoors only. <button aria-label="Read answer Working outdoors only." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q9_16" type="radio" value="PPE"/> Wearing proper PPE and ensuring controlled operation. <button aria-label="Read answer Wearing proper PPE and ensuring controlled operation." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q9_16" type="radio" value="Excess"/> Applying excess polish. <button aria-label="Read answer Applying excess polish." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q9_16" type="radio" value="Rapid"/> Polishing rapidly without breaks. <button aria-label="Read answer Polishing rapidly without breaks." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                  <li>
+                    <p>How can woodworking projects minimise their ecological footprint? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                    <label><input name="q10_16" type="radio" value="Excess"/> Using as much timber as possible. <button aria-label="Read answer Using as much timber as possible." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label data-correct="true"><input name="q10_16" type="radio" value="Sustain"/> Employing sustainable materials, reducing waste, and using eco-friendly finishes. <button aria-label="Read answer Employing sustainable materials, reducing waste, and using eco-friendly finishes." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q10_16" type="radio" value="Frequent"/> Polishing surfaces frequently. <button aria-label="Read answer Polishing surfaces frequently." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                    <label><input name="q10_16" type="radio" value="Ignore"/> Ignoring certification and sourcing. <button aria-label="Read answer Ignoring certification and sourcing." onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+                  </li>
+                </ol>
+                <button class="check-btn" type="button" onclick="submitQuiz(this, 'bedside-week16')">Check answers</button>
+                <span class="quiz-msg" id="week16-quiz-msg"></span>
+              </fieldset>
+            </form>
+            <h4>Conclusion</h4>
+            <p>Proper polishing methods and responsible material choices produce a professional finish while reducing environmental impact.</p>
+          </article>
+        </details>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTomPeDrZ-vDZyEC72wXeoeFpro0Z8zCD2OfgL9HxY7nBsokoieXxy4sT3n_O4x3iqhg/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>

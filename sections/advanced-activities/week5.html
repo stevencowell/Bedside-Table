@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bedside Table — Week 5</title>
+  <style>
+    body {font-family: Arial, sans-serif; line-height: 1.5; margin: 1rem 2rem;}
+    fieldset {border: 1px solid #777; padding: 1rem;}
+    legend   {padding: 0 .5rem;}
+    .quiz-msg {margin-left: 1rem; font-weight: bold;}
+    button.check-btn {margin-top: 1rem; padding: .4rem .8rem; cursor: pointer;}
+  </style>
+</head>
+<body>
+<details>
+    <summary><strong>Weeks 9 &amp; 10:</strong> Design Features, Advanced Orthogonal Drawings, and CAD</summary>
+    <form class="quiz" id="adv-week9-form">
+      <ol>
+        <li>
+          <p>Why is accurate annotation important in CAD orthogonal drawings?
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q1" required></textarea>
+        </li>
+        <li>
+          <p>Discuss the advantages of incorporating advanced design features such as inlays or customised hardware into furniture projects. Provide examples to illustrate your points.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q2" required class="wide-textarea"></textarea>
+        </li>
+        <li>
+          <p>Reflect on how mastery of CAD software and detailed drawing skills contribute significantly to the successful execution of complex woodworking projects. Consider aspects such as precision, efficiency, visualisation, communication, and error reduction.
+            <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button>
+          </p>
+          <textarea name="q3" required class="wide-textarea"></textarea>
+        </li>
+      </ol>
+      <button type="button" onclick="submitAdvancedQuiz(this, 'adv-week9')">Submit</button>
+      <span class="quiz-msg"></span>
+    </form>
+  </details>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTomPeDrZ-vDZyEC72wXeoeFpro0Z8zCD2OfgL9HxY7nBsokoieXxy4sT3n_O4x3iqhg/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>

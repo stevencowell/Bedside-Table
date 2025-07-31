@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Stage 5 Industrial Technology Timber - Bedside Table Project - 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedside Table Project</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0 0 10px 0;
+    }
+    /* HEADER SECTION STYLES */
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    /* NAVIGATION STYLES */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0056b3;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 15px 20px;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background: #003f80;
+    }
+    /* GOOGLE CLASSROOM SECTION STYLES */
+    .google-classroom {
+      background: #fffbcc;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .google-classroom h2 {
+      color: #007bff;
+    }
+    .google-classroom p {
+      font-size: 1.1em;
+    }
+    .google-classroom a {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .google-classroom a:hover {
+      background: #0056b3;
+    }
+    /* NEW: Google Image Styles */
+    .google-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .google-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    /* MAIN CONTENT STYLES */
+    main.content {
+      padding: 20px;
+    }
+    .content-section {
+      display: none; /* Hidden by default; activated via JS */
+      background: #fff;
+      margin: 10px auto;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .content-section h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f4f4f4;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .content-section h4 {
+      margin-top: 15px;
+      color: #555;
+    }
+    .content-section p, .content-section li {
+      margin-bottom: 10px;
+    }
+    .content-section ul, .content-section ol {
+      margin: 10px 0 15px 20px;
+    }
+    .content-section details {
+      background: #e9ecef;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .content-section summary {
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .content-section summary::-webkit-details-marker {
+      color: #007bff;
+    }
+    .content-section details p {
+      margin: 5px 0;
+    }
+    .resource-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-links li {
+      margin: 5px 0;
+    }
+    .resource-links a {
+      color: blue;
+    }
+    /* Styles for quiz feedback */
+    .quiz label[data-result="right"] {
+        color: green;
+        font-weight: bold;
+    }
+    .quiz label[data-result="wrong"] {
+        color: red;
+        text-decoration: line-through;
+    }
+    .quiz-msg {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Style for audio buttons */
+    .quiz button[aria-label^="Read"] {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    /* Ensure all list texts are bold (except quiz lists) */
+    .content-section ul li,
+    .content-section ol li,
+    .resource-links ul li {
+      font-weight: bold;
+    }
+    /* Keep quiz list items normal weight */
+    .quiz li {
+      font-weight: normal;
+    }
+    .resource-links a {
+      font-weight: bold;
+    }
+
+
+
+/* Ensure all summary headings (list links) are bold */
+summary { font-weight: bold; }
+
+  
+
+  /* Make all textareas taller & wider */
+  textarea { min-height: 140px; width: 95%; max-width: 900px; }
+  .wide-textarea { width: 98%; max-width: 1000px; }
+
+    /* Popup box styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .popup-box button:not(.close-popup) {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup-box button:not(.close-popup):hover {
+      background: #0056b3;
+    }
+    .popup-box button.close-popup {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1><b>Stage 5 Industrial Technology Timber - Bedside Table Project</b> - 2025</h1>
+  <p>Resources, Projects, and Content for Learning</p>
+  <div class="header-image">
+    <!-- STAFF: Replace 'sample_project.png' with your project image -->
+      <img src="table.png" alt="Bedside Table" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
+    <div class="plan-link" style="margin-top:10px;">
+      <!-- STAFF: Update link to your project's plan PDF -->
+      <a href="BedsideTablePlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="google-classroom" aria-label="Google Classroom Invitation">
+  <h2>Join Our Google Classroom</h2>
+  <p>Use the code below to join the class and access all online resources:</p>
+  <p><strong>Classroom Code: <span style="color:#d9534f; font-size:1.3em;">bedside23</span></strong></p>
+  <!-- STAFF: Update the Google Classroom link -->
+  <a href="https://classroom.google.com" target="_blank">Join Google Classroom</a>
+</section>
+
+<nav aria-label="Main Navigation">
+  <a class="nav-link active" data-section="program" href="#program">Subject Program</a>
+  <a class="nav-link" data-section="syllabus" href="#syllabus">Syllabus</a>
+  <a class="nav-link" data-section="assessment" href="#assessment">Assessments</a>
+  <a class="nav-link" data-section="project-unit" href="#project-unit">Bedside Table Project Unit</a>
+  <a class="nav-link" data-section="main-theory" href="#main-theory">Main Theory Content</a>
+  <a class="nav-link" data-section="support-activities" href="#support-activities">Support Theory Content (Optional)</a>
+  <a class="nav-link" data-section="advanced-activities" href="#advanced-activities">Advanced Theory Content (Optional)</a>
+</nav>
+
+<main class="content">
+
+<main class="content">
+<details>
+      <summary><strong>Week 4:</strong> On-Guard Mortiser and Joinery Techniques</summary>
+      <article>
+        <h4>Theory Content</h4>
+        <p>In Week 4, you'll enhance your woodworking skills by mastering the use of the mortiser machine and developing precise joinery techniques, specifically mortise and tenon joints. Achieving accuracy with these techniques is essential for producing durable and structurally sound furniture.</p>
+        <h4>Mortiser Safety and Operation</h4>
+        <p>The mortiser is a specialised woodworking machine designed for creating precise square or rectangular mortises (holes) in timber. These mortises are essential for crafting strong mortise and tenon joints.</p>
+        <p><strong>Key safety practices include:</strong></p>
+        <ul>
+          <li>Always wear appropriate Personal Protective Equipment (PPE), particularly safety glasses.</li>
+          <li>Verify the mortise chisel and bit are sharp, correctly aligned, and securely fitted.</li>
+          <li>Ensure timber is firmly clamped before commencing operation.</li>
+          <li>Keep hands clear of the cutting area and avoid distractions while operating the machine.</li>
+        </ul>
+        <h4>Mortise and Tenon Joinery</h4>
+        <p>The mortise and tenon joint is recognised for its strength and traditional value in woodworking. It involves two components:</p>
+        <ul>
+          <li><b>Mortise:</b> A precisely cut hole or recess in timber.</li>
+          <li><b>Tenon:</b> A projection shaped to fit snugly into the mortise.</li>
+        </ul>
+        <p>Accuracy in measurement and marking, along with meticulous cutting, ensures the joint’s effectiveness and strength.</p>
+        <h4>Practical Activity</h4>
+        <ul>
+          <li>Accurately mark out and cut mortises using the mortiser.</li>
+          <li>Begin marking and cutting matching tenons.</li>
+          <li>Test-fit each joint carefully for optimal accuracy.</li>
+        </ul>
+        <h4>Resources</h4>
+        <div class="resource-links">
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=nByfvaN6knk" target="_blank">Mortiser Operation and Safety (YouTube)</a></li>
+            <li><a href="#" target="_blank">Detailed Guide to Mortise and Tenon Joints</a></li>
+          </ul>
+        </div>
+        <form class="quiz" data-week="4" id="week4-quiz" style="margin-top: 1.5rem;">
+          <fieldset>
+            <legend><strong>Have you been paying attention? – Week 4 Quiz</strong></legend>
+            <ol>
+              <li>
+                <p>What is the main reason timber must be firmly secured when operating the mortiser? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q1_4" type="radio" value="Speeds"/> It speeds up the operation significantly <button aria-label="Read answer It speeds up the operation significantly" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q1_4" type="radio" value="Reduce vibrations"/> To reduce vibrations from the machine <button aria-label="Read answer To reduce vibrations from the machine" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q1_4" type="radio" value="Precision"/> To enhance precision and ensure operator safety <button aria-label="Read answer To enhance precision and ensure operator safety" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q1_4" type="radio" value="Prevent split"/> To ensure the timber does not split <button aria-label="Read answer To ensure the timber does not split" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Which describes the function of a mortiser accurately? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q2_4" type="radio" value="Circular recesses"/> Cutting precise circular recesses <button aria-label="Read answer Cutting precise circular recesses" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q2_4" type="radio" value="Square mortises"/> Cutting accurate square or rectangular mortises <button aria-label="Read answer Cutting accurate square or rectangular mortises" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q2_4" type="radio" value="Curved"/> Creating angled or curved cuts <button aria-label="Read answer Creating angled or curved cuts" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q2_4" type="radio" value="Cylindrical"/> Drilling precise cylindrical holes <button aria-label="Read answer Drilling precise cylindrical holes" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Why are mortise and tenon joints particularly preferred for constructing furniture frames? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q3_4" type="radio" value="Robust"/> They provide robust, long-lasting connections <button aria-label="Read answer They provide robust, long-lasting connections" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="Quick"/> They are the quickest joints to create <button aria-label="Read answer They are the quickest joints to create" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="No adhesive"/> They require no adhesive <button aria-label="Read answer They require no adhesive" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="Less timber"/> They use less timber overall <button aria-label="Read answer They use less timber overall" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What step should always precede using the mortiser machine? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q4_4" type="radio" value="Lubricate"/> Lubricating the timber surface <button aria-label="Read answer Lubricating the timber surface" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q4_4" type="radio" value="Check chisel"/> Checking the chisel sharpness and alignment <button aria-label="Read answer Checking the chisel sharpness and alignment" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q4_4" type="radio" value="Speed"/> Increasing machine speed to maximum <button aria-label="Read answer Increasing machine speed to maximum" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q4_4" type="radio" value="Remove guards"/> Removing all safety guards for clearer vision <button aria-label="Read answer Removing all safety guards for clearer vision" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Before operating the mortiser, what safety equipment is mandatory? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q5_4" type="radio" value="Safety glasses"/> Safety glasses <button aria-label="Read answer Safety glasses" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q5_4" type="radio" value="Gloves"/> Protective gloves <button aria-label="Read answer Protective gloves" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q5_4" type="radio" value="Ear"/> Ear protection <button aria-label="Read answer Ear protection" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q5_4" type="radio" value="Dust mask"/> Dust mask <button aria-label="Read answer Dust mask" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>If a mortise is too tight for the tenon, what is the most appropriate solution? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q6_4" type="radio" value="Force"/> Force the tenon into the mortise using a mallet <button aria-label="Read answer Force the tenon into the mortise using a mallet" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q6_4" type="radio" value="Adhesive"/> Use adhesive to fill gaps <button aria-label="Read answer Use adhesive to fill gaps" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q6_4" type="radio" value="Adjust tenon"/> Carefully adjust the tenon dimensions for an accurate fit <button aria-label="Read answer Carefully adjust the tenon dimensions for an accurate fit" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q6_4" type="radio" value="Start over"/> Start over with new timber <button aria-label="Read answer Start over with new timber" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Why is accurate marking critical for creating mortise and tenon joints? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q7_4" type="radio" value="Joint strength"/> It ensures joint strength and precise assembly <button aria-label="Read answer It ensures joint strength and precise assembly" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q7_4" type="radio" value="No sanding"/> It eliminates the need for sanding <button aria-label="Read answer It eliminates the need for sanding" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q7_4" type="radio" value="Fewer clamps"/> It reduces the use of clamps <button aria-label="Read answer It reduces the use of clamps" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q7_4" type="radio" value="Beauty"/> It ensures aesthetic beauty <button aria-label="Read answer It ensures aesthetic beauty" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What should be done if the mortiser chisel starts to bind or become stuck in the timber? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q8_4" type="radio" value="Switch off"/> Immediately switch off the machine and carefully clear the obstruction <button aria-label="Read answer Immediately switch off the machine and carefully clear the obstruction" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q8_4" type="radio" value="Push"/> Push harder to force through the timber <button aria-label="Read answer Push harder to force through the timber" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q8_4" type="radio" value="Pull"/> Pull the timber upwards quickly <button aria-label="Read answer Pull the timber upwards quickly" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q8_4" type="radio" value="Adjust speed"/> Adjust the machine speed mid-operation <button aria-label="Read answer Adjust the machine speed mid-operation" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>After cutting a mortise, what is the immediate next step in joint preparation? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q9_4" type="radio" value="Sand"/> Sand the timber smooth <button aria-label="Read answer Sand the timber smooth" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q9_4" type="radio" value="Cut tenon"/> Accurately cut and fit the corresponding tenon <button aria-label="Read answer Accurately cut and fit the corresponding tenon" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q9_4" type="radio" value="Glue"/> Glue the joint immediately <button aria-label="Read answer Glue the joint immediately" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q9_4" type="radio" value="Measure"/> Check the mortise with a measuring tape only <button aria-label="Read answer Check the mortise with a measuring tape only" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What is likely the result of inaccurately aligned mortise and tenon joints? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q10_4" type="radio" value="Reduced integrity"/> Reduced structural integrity of the furniture <button aria-label="Read answer Reduced structural integrity of the furniture" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q10_4" type="radio" value="Appearance"/> Enhanced aesthetic appearance <button aria-label="Read answer Enhanced aesthetic appearance" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q10_4" type="radio" value="Speed"/> Increased assembly speed <button aria-label="Read answer Increased assembly speed" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q10_4" type="radio" value="Lifespan"/> Longer timber lifespan <button aria-label="Read answer Longer timber lifespan" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'bedside-week4')">Check answers</button>
+            <span class="quiz-msg" id="week4-quiz-msg"></span>
+          </fieldset>
+        </form>
+        <h4>Conclusion</h4>
+        <p>Mastering the mortiser and practicing accurate mortise and tenon joints will give your projects the strength and precision needed for quality furniture.</p>
+      </article>
+    </details>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTomPeDrZ-vDZyEC72wXeoeFpro0Z8zCD2OfgL9HxY7nBsokoieXxy4sT3n_O4x3iqhg/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>

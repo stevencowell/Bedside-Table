@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Stage 5 Industrial Technology Timber - Bedside Table Project - 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedside Table Project</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0 0 10px 0;
+    }
+    /* HEADER SECTION STYLES */
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    /* NAVIGATION STYLES */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0056b3;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 15px 20px;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background: #003f80;
+    }
+    /* GOOGLE CLASSROOM SECTION STYLES */
+    .google-classroom {
+      background: #fffbcc;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .google-classroom h2 {
+      color: #007bff;
+    }
+    .google-classroom p {
+      font-size: 1.1em;
+    }
+    .google-classroom a {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .google-classroom a:hover {
+      background: #0056b3;
+    }
+    /* NEW: Google Image Styles */
+    .google-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .google-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    /* MAIN CONTENT STYLES */
+    main.content {
+      padding: 20px;
+    }
+    .content-section {
+      display: none; /* Hidden by default; activated via JS */
+      background: #fff;
+      margin: 10px auto;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .content-section h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f4f4f4;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .content-section h4 {
+      margin-top: 15px;
+      color: #555;
+    }
+    .content-section p, .content-section li {
+      margin-bottom: 10px;
+    }
+    .content-section ul, .content-section ol {
+      margin: 10px 0 15px 20px;
+    }
+    .content-section details {
+      background: #e9ecef;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .content-section summary {
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .content-section summary::-webkit-details-marker {
+      color: #007bff;
+    }
+    .content-section details p {
+      margin: 5px 0;
+    }
+    .resource-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-links li {
+      margin: 5px 0;
+    }
+    .resource-links a {
+      color: blue;
+    }
+    /* Styles for quiz feedback */
+    .quiz label[data-result="right"] {
+        color: green;
+        font-weight: bold;
+    }
+    .quiz label[data-result="wrong"] {
+        color: red;
+        text-decoration: line-through;
+    }
+    .quiz-msg {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Style for audio buttons */
+    .quiz button[aria-label^="Read"] {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    /* Ensure all list texts are bold (except quiz lists) */
+    .content-section ul li,
+    .content-section ol li,
+    .resource-links ul li {
+      font-weight: bold;
+    }
+    /* Keep quiz list items normal weight */
+    .quiz li {
+      font-weight: normal;
+    }
+    .resource-links a {
+      font-weight: bold;
+    }
+
+
+
+/* Ensure all summary headings (list links) are bold */
+summary { font-weight: bold; }
+
+  
+
+  /* Make all textareas taller & wider */
+  textarea { min-height: 140px; width: 95%; max-width: 900px; }
+  .wide-textarea { width: 98%; max-width: 1000px; }
+
+    /* Popup box styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .popup-box button:not(.close-popup) {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup-box button:not(.close-popup):hover {
+      background: #0056b3;
+    }
+    .popup-box button.close-popup {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1><b>Stage 5 Industrial Technology Timber - Bedside Table Project</b> - 2025</h1>
+  <p>Resources, Projects, and Content for Learning</p>
+  <div class="header-image">
+    <!-- STAFF: Replace 'sample_project.png' with your project image -->
+      <img src="table.png" alt="Bedside Table" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
+    <div class="plan-link" style="margin-top:10px;">
+      <!-- STAFF: Update link to your project's plan PDF -->
+      <a href="BedsideTablePlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="google-classroom" aria-label="Google Classroom Invitation">
+  <h2>Join Our Google Classroom</h2>
+  <p>Use the code below to join the class and access all online resources:</p>
+  <p><strong>Classroom Code: <span style="color:#d9534f; font-size:1.3em;">bedside23</span></strong></p>
+  <!-- STAFF: Update the Google Classroom link -->
+  <a href="https://classroom.google.com" target="_blank">Join Google Classroom</a>
+</section>
+
+<nav aria-label="Main Navigation">
+  <a class="nav-link active" data-section="program" href="#program">Subject Program</a>
+  <a class="nav-link" data-section="syllabus" href="#syllabus">Syllabus</a>
+  <a class="nav-link" data-section="assessment" href="#assessment">Assessments</a>
+  <a class="nav-link" data-section="project-unit" href="#project-unit">Bedside Table Project Unit</a>
+  <a class="nav-link" data-section="main-theory" href="#main-theory">Main Theory Content</a>
+  <a class="nav-link" data-section="support-activities" href="#support-activities">Support Theory Content (Optional)</a>
+  <a class="nav-link" data-section="advanced-activities" href="#advanced-activities">Advanced Theory Content (Optional)</a>
+</nav>
+
+<main class="content">
+
+<main class="content">
+<details>
+      <summary><strong>Week 3:</strong> Dressing and Preparing Timber - DAR and FEWTEL</summary>
+      <article>
+        <h4>Theory Content</h4>
+        <p>In Week 3, your focus will shift towards accurately dressing and preparing your timber. The process is critical for achieving the precise dimensions needed for a quality final product.</p>
+        <h4>Dressing Timber (DAR)</h4>
+        <p>DAR stands for Dressed All Round, meaning timber is planed smooth on all sides. This step is vital for accurate joinery and assembly.</p>
+        <h4>FEWTEL Method</h4>
+        <p>Use the FEWTEL method to systematically prepare timber:</p>
+        <ol>
+          <li><b>Face:</b> Plane one face flat.</li>
+          <li><b>Edge:</b> Plane one edge square to the first face.</li>
+          <li><b>Width:</b> Cut or plane the timber to the final width.</li>
+          <li><b>Thickness:</b> Thickness the timber to the final dimension.</li>
+          <li><b>End:</b> Trim the ends square and to the final length.</li>
+          <li><b>Length:</b> Confirm the timber is accurately measured to length.</li>
+        </ol>
+        <h4>Tools and Techniques</h4>
+        <ul>
+          <li>Hand Plane: Ideal for flattening and smoothing.</li>
+          <li>Thicknesser: Used for achieving uniform thickness across timber.</li>
+          <li>Always verify squareness with a try square.</li>
+        </ul>
+        <h4>Practical Activity</h4>
+        <ul>
+          <li>Use the FEWTEL method to dress your timber to precise dimensions.</li>
+          <li>Ensure each piece is accurately marked and checked for squareness.</li>
+        </ul>
+        <h4>Resources</h4>
+        <div class="resource-links">
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=HzD8RjYB6tI" target="_blank">How to Plane Wood (YouTube)</a></li>
+            <li><a href="https://www.woodworkingnetwork.com/best-practices-guide/solid-wood-machining" target="_blank">Understanding Timber Preparation</a></li>
+          </ul>
+        </div>
+        <form class="quiz" data-week="3" id="week3-quiz" style="margin-top: 1.5rem;">
+          <fieldset>
+            <legend><strong>Have you been paying attention? – Week 3 Quiz</strong></legend>
+            <ol>
+              <li>
+                <p>Why is the FEWTEL method beneficial in woodworking? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_1" type="radio" value="Quick"/> It is quick <button aria-label="Read answer It is quick" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_1" type="radio" value="Accuracy"/> It ensures accuracy and consistency <button aria-label="Read answer It ensures accuracy and consistency" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_1" type="radio" value="Large only"/> It only applies to large projects <button aria-label="Read answer It only applies to large projects" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_1" type="radio" value="Law"/> It is required by law <button aria-label="Read answer It is required by law" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Which tool should you use to ensure one edge of timber is square to its face? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_2" type="radio" value="Ruler"/> Ruler <button aria-label="Read answer Ruler" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_2" type="radio" value="Try square"/> Try square <button aria-label="Read answer Try square" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_2" type="radio" value="Tape measure"/> Tape measure <button aria-label="Read answer Tape measure" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_2" type="radio" value="Handsaw"/> Handsaw <button aria-label="Read answer Handsaw" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>When dressing timber, why must you start with flattening one face first? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q3_3" type="radio" value="Reference"/> To provide a reference surface for squaring the other edges <button aria-label="Read answer To provide a reference surface for squaring the other edges" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_3" type="radio" value="Speed"/> To speed up the process <button aria-label="Read answer To speed up the process" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_3" type="radio" value="Easiest"/> Because it’s easiest <button aria-label="Read answer Because it’s easiest" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_3" type="radio" value="Natural"/> Timber naturally has one flat side <button aria-label="Read answer Timber naturally has one flat side" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What does DAR stand for in timber preparation? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q3_4" type="radio" value="Dressed All Round"/> Dressed All Round <button aria-label="Read answer Dressed All Round" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="Dressed and Ready"/> Dressed and Ready <button aria-label="Read answer Dressed and Ready" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="Dimensionally Accurate Resource"/> Dimensionally Accurate Resource <button aria-label="Read answer Dimensionally Accurate Resource" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_4" type="radio" value="Dressed After Routing"/> Dressed After Routing <button aria-label="Read answer Dressed After Routing" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What machine is best for quickly achieving uniform thickness across timber? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_5" type="radio" value="Router"/> Router <button aria-label="Read answer Router" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_5" type="radio" value="Thicknesser"/> Thicknesser <button aria-label="Read answer Thicknesser" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_5" type="radio" value="Handsaw"/> Handsaw <button aria-label="Read answer Handsaw" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_5" type="radio" value="Drill press"/> Drill press <button aria-label="Read answer Drill press" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What step follows 'Width' in the FEWTEL method? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_6" type="radio" value="Face"/> Face <button aria-label="Read answer Face" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_6" type="radio" value="Edge"/> Edge <button aria-label="Read answer Edge" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_6" type="radio" value="Thickness"/> Thickness <button aria-label="Read answer Thickness" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_6" type="radio" value="Length"/> Length <button aria-label="Read answer Length" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Tom finds his timber piece isn’t square. Which tool should he use first to correct it? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_7" type="radio" value="Router"/> Router <button aria-label="Read answer Router" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_7" type="radio" value="Chisel"/> Chisel <button aria-label="Read answer Chisel" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_7" type="radio" value="Hand Plane"/> Hand Plane <button aria-label="Read answer Hand Plane" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_7" type="radio" value="Tape measure"/> Tape measure <button aria-label="Read answer Tape measure" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Before dressing timber, what should you check first? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input data-correct="true" name="q3_8" type="radio" value="Tools sharp"/> That all tools are sharp and correctly set up <button aria-label="Read answer That all tools are sharp and correctly set up" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_8" type="radio" value="Color"/> That timber is the correct color <button aria-label="Read answer That timber is the correct color" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_8" type="radio" value="Clutter"/> That the workspace is cluttered <button aria-label="Read answer That the workspace is cluttered" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_8" type="radio" value="Others started"/> That your classmates have started <button aria-label="Read answer That your classmates have started" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>Why is it essential to ensure accurate marking during the FEWTEL process? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_9" type="radio" value="Finish quickly"/> To finish quickly <button aria-label="Read answer To finish quickly" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_9" type="radio" value="Precise"/> To achieve precise final dimensions and avoid material wastage <button aria-label="Read answer To achieve precise final dimensions and avoid material wastage" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_9" type="radio" value="Practice"/> To practice marking <button aria-label="Read answer To practice marking" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_9" type="radio" value="Impress"/> To impress the teacher <button aria-label="Read answer To impress the teacher" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+              <li>
+                <p>What is the primary purpose of a thicknesser? <button aria-label="Read question aloud" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></p>
+                <label><input name="q3_10" type="radio" value="Cut curves"/> To cut curves <button aria-label="Read answer To cut curves" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_10" type="radio" value="Mark lines"/> To mark straight lines <button aria-label="Read answer To mark straight lines" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input data-correct="true" name="q3_10" type="radio" value="Uniform thickness"/> To achieve uniform thickness on timber <button aria-label="Read answer To achieve uniform thickness on timber" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label><br/>
+                <label><input name="q3_10" type="radio" value="Drill holes"/> To drill holes <button aria-label="Read answer To drill holes" onclick="event.preventDefault(); speakText(this)" type="button">🔊</button></label>
+              </li>
+            </ol>
+            <button class="check-btn" type="button" onclick="submitQuiz(this, 'bedside-week3')">Check answers</button>
+            <span class="quiz-msg" id="week3-quiz-msg"></span>
+          </fieldset>
+        </form>
+        <h4>Conclusion</h4>
+        <p>Properly dressing timber with the FEWTEL method ensures accurate parts and minimises waste, setting the foundation for quality joinery.</p>
+      </article>
+    </details>
+</main>
+
+<!-- Popup for results -->
+<div id="resultPopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="close-popup" aria-label="Close">&times;</button>
+    <h3>Results Submitted</h3>
+    <p>You can now visit Google Classroom to record your work.</p>
+    <!-- STAFF: Replace href with the project link when available -->
+    <a id="popupClassroomLink" href="#" target="_blank">Open Google Classroom</a>
+  </div>
+</div>
+
+<!-- Popup for entering name -->
+<div id="namePopup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <label for="studentName"><b>Please enter your name:</b></label><br/>
+    <input type="text" id="studentName" style="margin-top:10px; padding:8px; width:95%;" />
+    <button id="submitNameBtn" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+<script>
+    // Script for handling navigation link clicks and toggling active sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Function to set the active section based on URL hash or default
+        function setActiveSection() {
+            let targetID = window.location.hash.substring(1) || 'program';
+            if (!document.getElementById(targetID)) {
+                targetID = 'program';
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-section') === targetID) {
+                    nav.classList.add('active');
+                }
+            });
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === targetID) {
+                    sec.classList.add('active');
+                }
+            });
+        }
+
+        // Set active section on page load
+        setActiveSection();
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetID = link.getAttribute('data-section');
+                window.location.hash = targetID;
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                link.classList.add('active');
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Listen for hash changes (e.g., browser back/forward buttons)
+        window.addEventListener('hashchange', setActiveSection);
+    });
+</script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTomPeDrZ-vDZyEC72wXeoeFpro0Z8zCD2OfgL9HxY7nBsokoieXxy4sT3n_O4x3iqhg/exec";
+const CLASSROOM_LINK = "#"; // STAFF: Replace with your Google Classroom link
+
+// Voice setup for text-to-speech
+const synth = window.speechSynthesis;
+let voices = [];
+synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+
+function speakText(btn) {
+  let text = '';
+  if (btn.dataset.text) {
+    text = btn.dataset.text;
+  } else {
+    const p = btn.closest('p');
+    if (p) {
+      text = Array.from(p.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .join(' ');
+    } else {
+      const lbl = btn.closest('label');
+      text = Array.from(lbl.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(t => t.length)
+        .join(' ');
+    }
+  }
+  if (!voices.length) voices = synth.getVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.voice = voices.find(v => v.name === 'Google UK English Female')
+             || voices.find(v => /Natural/.test(v.name))
+             || voices[0];
+  synth.speak(utt);
+}
+
+function showResultPopup(url) {
+  const overlay = document.getElementById('resultPopup');
+  const link = document.getElementById('popupClassroomLink');
+  if (link) link.href = url || '#';
+  if (overlay) overlay.classList.add('active');
+}
+
+function askForName() {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('namePopup');
+    const input = document.getElementById('studentName');
+    const btn = document.getElementById('submitNameBtn');
+    if (!overlay || !input || !btn) { resolve(''); return; }
+    overlay.classList.add('active');
+    btn.onclick = () => {
+      const name = input.value.trim();
+      if (!name) return;
+      overlay.classList.remove('active');
+      resolve(name);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('#resultPopup .close-popup');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('resultPopup').classList.remove('active');
+    });
+  }
+});
+
+function submitQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const fieldset = form.querySelector('fieldset');
+  let correct = 0, total = 0;
+  const results = [];
+  fieldset.querySelectorAll('li').forEach((li, idx) => {
+    const radios = li.querySelectorAll('input[type=radio]');
+    let userCorrect = false, answered = false;
+    radios.forEach(radio => {
+      if (radio.checked) {
+        answered = true;
+        if (radio.hasAttribute('data-correct')) userCorrect = true;
+      }
+      // Reset label
+      radio.parentElement.removeAttribute('data-result');
+    });
+    total += 1;
+    // Mark right/wrong visually
+    radios.forEach(radio => {
+      if (radio.checked) {
+        radio.parentElement.setAttribute('data-result', userCorrect ? "right" : "wrong");
+      }
+    });
+    if (userCorrect) correct += 1;
+    results.push({
+      question: li.querySelector('p').textContent,
+      answer: Array.from(radios).find(r => r.checked)?.value || ''
+    });
+  });
+  // Show feedback
+  let msg = `You got ${correct} out of ${total} correct.`;
+  form.querySelector('.quiz-msg').textContent = msg;
+
+  askForName().then(name => {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        quizType,
+        quiz: results,
+        score: correct + "/" + total,
+        studentName: name,
+        timestamp: new Date().toISOString()
+      })
+    });
+    showResultPopup(CLASSROOM_LINK);
+  });
+}
+
+function submitAdvancedQuiz(btn, quizType) {
+  const form = btn.closest('form');
+  const textareas = form.querySelectorAll('textarea');
+  const responses = [];
+  textareas.forEach((ta) => {
+    responses.push({
+      question: ta.closest('li').querySelector('p').textContent,
+      answer: ta.value.trim()
+    });
+  });
+
+  const studentName = prompt('Please enter your name to submit your answers:');
+  if (!studentName) return;
+
+  form.querySelector('.quiz-msg').textContent =
+    'Responses submitted. Your teacher will review them.';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      quizType,
+      studentName: studentName.trim(),
+      responses,
+      timestamp: new Date().toISOString()
+    })
+  });
+  showResultPopup(CLASSROOM_LINK);
+}
+</script>
+</body>
+</html>
