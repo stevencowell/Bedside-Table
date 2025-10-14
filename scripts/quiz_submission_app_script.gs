@@ -34,14 +34,14 @@ const SHEETS_CONFIG = {
 
 function doPost(e) {
   if (!e || !e.postData || !e.postData.contents) {
-    return createResponse_(400, 'Missing request body');
+    return createErrorResponse_(400, 'Missing request body');
   }
 
   let payload;
   try {
     payload = JSON.parse(e.postData.contents);
   } catch (error) {
-    return createResponse_(400, 'Invalid JSON: ' + error);
+    return createErrorResponse_(400, 'Invalid JSON: ' + error);
   }
 
   try {
@@ -54,14 +54,18 @@ function doPost(e) {
     const rows = config.buildRows(payload);
 
     if (!rows.length) {
-      return createResponse_(400, 'No quiz data supplied');
+      return createErrorResponse_(400, 'No quiz data supplied');
     }
 
     sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, config.header.length).setValues(rows);
-    return createJsonResponse_({ status: 'success', rowsWritten: rows.length });
+    return createSuccessResponse_({ rowsWritten: rows.length });
   } catch (error) {
-    return createResponse_(500, 'Server error: ' + error);
+    return createErrorResponse_(500, 'Server error: ' + error);
   }
+}
+
+function doOptions() {
+  return createPreflightResponse_();
 }
 
 function getTargetSheet_(sheetName, headerRow) {
@@ -201,14 +205,30 @@ function headersMatch_(existing, target) {
   return true;
 }
 
-function createResponse_(statusCode, message) {
-  return ContentService.createTextOutput(message)
-    .setMimeType(ContentService.MimeType.TEXT)
-    .setResponseCode(statusCode);
+function createPreflightResponse_() {
+  const output = ContentService.createTextOutput('');
+  output.setResponseCode(204);
+  return applyCorsHeaders_(output);
 }
 
-function createJsonResponse_(object) {
-  return ContentService.createTextOutput(JSON.stringify(object))
+function createSuccessResponse_(object) {
+  return createJsonResponse_(200, Object.assign({ status: 'success' }, object));
+}
+
+function createErrorResponse_(statusCode, message) {
+  return createJsonResponse_(statusCode, { status: 'error', message: message });
+}
+
+function createJsonResponse_(statusCode, object) {
+  const output = ContentService.createTextOutput(JSON.stringify(object))
     .setMimeType(ContentService.MimeType.JSON)
-    .setResponseCode(200);
+    .setResponseCode(statusCode);
+  return applyCorsHeaders_(output);
+}
+
+function applyCorsHeaders_(output) {
+  output.setHeader('Access-Control-Allow-Origin', '*');
+  output.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  output.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  return output;
 }
