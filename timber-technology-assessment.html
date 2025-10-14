@@ -486,12 +486,23 @@
           body: JSON.stringify(payload)
         });
 
+        const rawBody = await response.text();
+
         if (!response.ok) {
-          const errorText = await response.text();
+          const errorText = rawBody.trim();
           throw new Error(errorText || `HTTP ${response.status}`);
         }
 
-        const result = await response.json();
+        let result = null;
+        if (rawBody.trim().length) {
+          try {
+            result = JSON.parse(rawBody);
+          } catch (parseError) {
+            console.error("Failed to parse server response", parseError);
+            throw new Error("Received an unexpected response from the server.");
+          }
+        }
+
         if (!result || result.status !== "success") {
           throw new Error((result && result.message) || "Unknown server response");
         }
@@ -500,7 +511,8 @@
         statusMessage.classList.add("status-success");
       } catch (error) {
         console.error(error);
-        statusMessage.textContent = "⚠️ There was a problem submitting your responses. Please notify your teacher immediately.";
+        const details = error && error.message ? ` ${error.message}` : "";
+        statusMessage.textContent = `⚠️ There was a problem submitting your responses.${details} Please notify your teacher immediately.`;
         statusMessage.classList.add("status-error");
       } finally {
         form.dataset.submitting = "false";
