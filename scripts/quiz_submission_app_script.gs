@@ -1,7 +1,9 @@
-// Replace with the ID of the Google Sheet located in
-// https://drive.google.com/drive/folders/1zI9Ha1fC5tsBIwEN2eLSVaLzcrmjzQFS
-// (the ID is the long string in the sheet URL, not the folder URL).
-const SPREADSHEET_ID = 'REPLACE_WITH_SPREADSHEET_ID';
+// Optional: set this to force the script to use a specific spreadsheet ID.
+// If left blank (or left as the default placeholder) the script will use
+// the spreadsheet it is bound to, which is the easiest way to deploy the
+// web app from the target Google Sheet found at
+// https://drive.google.com/drive/folders/1zI9Ha1fC5tsBIwEN2eLSVaLzcrmjzQFS.
+const SPREADSHEET_ID = '';
 const SHEET_NAME = 'Quiz Responses';
 const HEADER_ROW = ['Timestamp', 'Student Name', 'Quiz Type', 'Score', 'Question', 'Answer', 'Raw Payload'];
 
@@ -33,7 +35,7 @@ function doPost(e) {
 }
 
 function getTargetSheet_() {
-  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const spreadsheet = getSpreadsheet_();
   let sheet = spreadsheet.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = spreadsheet.insertSheet(SHEET_NAME);
@@ -47,6 +49,19 @@ function getTargetSheet_() {
   }
 
   return sheet;
+}
+
+function getSpreadsheet_() {
+  const trimmedId = (SPREADSHEET_ID || '').trim();
+  if (trimmedId && trimmedId !== 'REPLACE_WITH_SPREADSHEET_ID') {
+    return SpreadsheetApp.openById(trimmedId);
+  }
+
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (!active) {
+    throw new Error('Unable to locate target spreadsheet. Provide a SPREADSHEET_ID.');
+  }
+  return active;
 }
 
 function buildRows_(payload) {
