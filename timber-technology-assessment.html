@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year 10 Timber Technology Examination</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      --accent: #1f7a8c;
+      --accent-dark: #0e4f60;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --text: #1f1f1f;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(31, 122, 140, 0.08);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      font-weight: 600;
+    }
+
+    .instructions {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(31, 122, 140, 0.08);
+      border-radius: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.25rem;
+      border-radius: 8px;
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 150px;
+    }
+
+    .question {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+    }
+
+    .question:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      margin-bottom: 1.5rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      font-weight: 500;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover,
+    button:focus-visible {
+      background: var(--accent-dark);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .overlay-card {
+      background: #ffffff;
+      max-width: 420px;
+      width: 90%;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .overlay-card h2 {
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+    }
+
+    .overlay-card input[type="password"] {
+      font-size: 1.1rem;
+      text-align: center;
+      letter-spacing: 0.3rem;
+    }
+
+    .status-message {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .status-success {
+      background: rgba(31, 140, 78, 0.12);
+      color: #21553d;
+      border: 1px solid rgba(18, 97, 59, 0.35);
+    }
+
+    .status-error {
+      background: rgba(220, 53, 69, 0.12);
+      color: #661322;
+      border: 1px solid rgba(220, 53, 69, 0.35);
+    }
+
+    .flex-two {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 720px) {
+      .flex-two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="passcode-overlay" aria-hidden="true">
+    <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="passcode-title">
+      <h2 id="passcode-title">Enter Exam Passcode</h2>
+      <p style="margin-bottom: 1.5rem; color: #4b5563;">
+        This assessment is restricted. Please enter the four-digit invigilator passcode to continue.
+      </p>
+      <input type="password" id="passcode-input" maxlength="4" inputmode="numeric" autocomplete="off" aria-label="Passcode" />
+      <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+        <button type="button" id="passcode-submit">Unlock</button>
+      </div>
+      <p id="passcode-error" style="color: #dc3545; font-weight: 600; display: none; margin-top: 1rem;">Incorrect passcode. Please try again.</p>
+    </div>
+  </div>
+
+  <header>
+    <h1>Wagga Wagga High School</h1>
+    <p>Year 10 Timber Technology &mdash; End of Year Examination</p>
+    <p style="margin-top: 0.25rem; font-size: 0.95rem; opacity: 0.85;">Assessment Duration: 90 minutes &middot; Reading Time: 10 minutes</p>
+  </header>
+
+  <main>
+    <section class="card instructions">
+      <h2>Student Instructions</h2>
+      <ul>
+        <li>Read each question carefully. Use the reading time to plan your approach.</li>
+        <li>Submit all responses within the allocated time. You may save drafts separately.</li>
+        <li>Provide diagrams where requested. Describe them clearly if you cannot draw digitally.</li>
+        <li>Support extended responses with relevant workshop examples, terminology, and WHS considerations.</li>
+      </ul>
+    </section>
+
+    <form id="assessment-form">
+      <section class="card">
+        <h2>Student &amp; Class Details</h2>
+        <div class="flex-two">
+          <div>
+            <label for="student-name">Student Name</label>
+            <input type="text" id="student-name" name="student_name" placeholder="First and last name" required />
+          </div>
+          <div>
+            <label for="student-email">School Email</label>
+            <input type="email" id="student-email" name="student_email" placeholder="student@school.nsw.edu.au" required />
+          </div>
+          <div>
+            <label for="class-group">Class Group</label>
+            <input type="text" id="class-group" name="class_group" placeholder="e.g. 10 Timber B" required />
+          </div>
+          <div>
+            <label for="teacher">Teacher</label>
+            <input type="text" id="teacher" name="teacher" placeholder="Teacher name" required />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section A &mdash; Safety and Workshop Practice</h2>
+        <div class="question">
+          <label for="a1">A1. Identify three workshop hazards specific to timber machining and outline a control measure for each.</label>
+          <textarea id="a1" name="A1_hazards" required></textarea>
+        </div>
+        <div class="question">
+          <label>A2. When preparing to use the thicknesser, list the correct sequence for the following steps:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="A2_sequence" value="Check stock for nails &gt; Set depth &gt; Stand to side &gt; Feed timber" required /> Check stock for nails &gt; Set depth &gt; Stand to side &gt; Feed timber</label>
+            <label><input type="radio" name="A2_sequence" value="Set depth &gt; Feed timber &gt; Stand to side &gt; Check stock" /> Set depth &gt; Feed timber &gt; Stand to side &gt; Check stock</label>
+            <label><input type="radio" name="A2_sequence" value="Stand to side &gt; Feed timber &gt; Set depth &gt; Check stock" /> Stand to side &gt; Feed timber &gt; Set depth &gt; Check stock</label>
+          </div>
+        </div>
+        <div class="question">
+          <label for="a3">A3. Explain how personal protective equipment (PPE) and safe operating procedures work together to manage risk when using the bandsaw.</label>
+          <textarea id="a3" name="A3_ppe_bandsaw" required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section B &mdash; Timber Properties and Materials</h2>
+        <div class="question">
+          <label for="b1">B1. Compare the properties of two Australian hardwood species suitable for furniture making. Include density, workability, and sustainability considerations.</label>
+          <textarea id="b1" name="B1_hardwood_comparison" required></textarea>
+        </div>
+        <div class="question">
+          <label>B2. Select the engineered board product best suited for the following uses:</label>
+          <div class="flex-two">
+            <div>
+              <label for="b2a">(a) Cabinet carcass in a humid laundry</label>
+              <select id="b2a" name="B2a_engineered_board" required>
+                <option value="">Select</option>
+                <option value="Marine plywood">Marine plywood</option>
+                <option value="MDF">MDF</option>
+                <option value="Particle board">Particle board</option>
+                <option value="Plywood">Plywood</option>
+              </select>
+            </div>
+            <div>
+              <label for="b2b">(b) Curved drawer front</label>
+              <select id="b2b" name="B2b_engineered_board" required>
+                <option value="">Select</option>
+                <option value="Bending plywood">Bending plywood</option>
+                <option value="LVL">LVL</option>
+                <option value="Hardboard">Hardboard</option>
+                <option value="Blockboard">Blockboard</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <label for="b3">B3. Describe how moisture content affects the dimensional stability of timber and outline two strategies to minimise movement in a finished product.</label>
+          <textarea id="b3" name="B3_moisture_stability" required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section C &mdash; Design and Project Planning</h2>
+        <div class="question">
+          <label for="c1">C1. Provide a concise design brief for a bedside table project that meets the needs of a teenage user. Include constraints and success criteria.</label>
+          <textarea id="c1" name="C1_design_brief" required></textarea>
+        </div>
+        <div class="question">
+          <label for="c2">C2. Outline the workflow for producing the bedside table from raw stock to finished product. Identify key quality control checkpoints.</label>
+          <textarea id="c2" name="C2_workflow" required></textarea>
+        </div>
+        <div class="question">
+          <label for="c3">C3. Upload a sketch or describe the orthographic drawing views you would submit with your plan. Include critical dimensions, tolerances, and any joinery details.</label>
+          <textarea id="c3" name="C3_drawing_description" placeholder="If submitting by hand, describe each view and key dimensions." required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section D &mdash; Practical Skills Application</h2>
+        <div class="question">
+          <label for="d1">D1. Explain, step-by-step, how to cut and assemble a through housing joint for a drawer divider. Include tool selection and measurement techniques.</label>
+          <textarea id="d1" name="D1_through_housing" required></textarea>
+        </div>
+        <div class="question">
+          <label for="d2">D2. What inspection criteria would you apply to judge the success of the finished joint? Provide at least four criteria.</label>
+          <textarea id="d2" name="D2_joint_criteria" required></textarea>
+        </div>
+        <div class="question">
+          <label for="d3">D3. Short response: List the correct order of operations for safely using the drop saw to cut multiple identical components.</label>
+          <textarea id="d3" name="D3_drop_saw_order" required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section E &mdash; Sustainability and Innovation</h2>
+        <div class="question">
+          <label for="e1">E1. Analyse the environmental impact of your bedside table project across the timber lifecycle (harvesting, processing, use, end-of-life). Suggest improvements to reduce the footprint.</label>
+          <textarea id="e1" name="E1_lifecycle" required></textarea>
+        </div>
+        <div class="question">
+          <label for="e2">E2. Describe an emerging technology or smart feature that could be integrated into timber furniture to enhance functionality or sustainability.</label>
+          <textarea id="e2" name="E2_emerging_tech" required></textarea>
+        </div>
+        <div class="question">
+          <label>E3. Select the statements that represent responsible forest management.</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="E3_responsible_forest" value="Replanting harvested areas with native species" /> Replanting harvested areas with native species</label>
+            <label><input type="checkbox" name="E3_responsible_forest" value="Tracking chain-of-custody certification" /> Tracking chain-of-custody certification</label>
+            <label><input type="checkbox" name="E3_responsible_forest" value="Burning all offcuts to avoid waste" /> Burning all offcuts to avoid waste</label>
+            <label><input type="checkbox" name="E3_responsible_forest" value="Using illegally logged imports to save money" /> Using illegally logged imports to save money</label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section F &mdash; Reflection</h2>
+        <div class="question">
+          <label for="f1">F1. Reflect on your growth in timber technology this year. Identify specific skills you have developed and areas for future improvement.</label>
+          <textarea id="f1" name="F1_reflection" required></textarea>
+        </div>
+        <div class="question">
+          <label for="f2">F2. What safety pledge will you make for next year to uphold best practice in the workshop?</label>
+          <textarea id="f2" name="F2_safety_pledge" required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Submission</h2>
+        <p>
+          When you click <strong>Submit Assessment</strong>, your responses will be securely sent to the department's marking spreadsheet.
+          Wait for the confirmation message before closing this tab.
+        </p>
+        <button type="submit">Submit Assessment</button>
+        <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    const PASSCODE = "8142";
+    const overlay = document.getElementById("passcode-overlay");
+    const passcodeInput = document.getElementById("passcode-input");
+    const passcodeError = document.getElementById("passcode-error");
+    const passcodeSubmit = document.getElementById("passcode-submit");
+
+    function unlockExam() {
+      if (passcodeInput.value.trim() === PASSCODE) {
+        overlay.style.display = "none";
+        overlay.setAttribute("aria-hidden", "true");
+        passcodeError.style.display = "none";
+        document.body.style.overflow = "auto";
+        document.getElementById("student-name").focus();
+      } else {
+        passcodeError.style.display = "block";
+        passcodeInput.focus();
+        passcodeInput.select();
+      }
+    }
+
+    passcodeSubmit.addEventListener("click", unlockExam);
+    passcodeInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        unlockExam();
+      }
+    });
+
+    // Submission handler
+    const form = document.getElementById("assessment-form");
+    const statusMessage = document.getElementById("status-message");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const payload = {};
+      formData.forEach((value, key) => {
+        if (payload[key]) {
+          if (!Array.isArray(payload[key])) {
+            payload[key] = [payload[key]];
+          }
+          payload[key].push(value);
+        } else {
+          payload[key] = value;
+        }
+      });
+
+      const timestamp = new Date().toISOString();
+      payload.submitted_at = timestamp;
+
+      statusMessage.textContent = "Submitting your responses...";
+      statusMessage.className = "status-message";
+      statusMessage.style.display = "block";
+
+      try {
+        // Replace with your deployed Google Apps Script web app URL.
+        // Instructions: Create a Google Apps Script project connected to your Google Sheet.
+        // Publish it as a web app that accepts POST requests and write the payload to the sheet.
+        const scriptUrl = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+
+        const response = await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        // With no-cors the response is opaque; we assume success if no error is thrown.
+        statusMessage.textContent = "✅ Submission received. You may now close this tab.";
+        statusMessage.classList.add("status-success");
+      } catch (error) {
+        console.error(error);
+        statusMessage.textContent = "⚠️ There was a problem submitting your responses. Please notify your teacher immediately.";
+        statusMessage.classList.add("status-error");
+      }
+    });
+  </script>
+</body>
+</html>
