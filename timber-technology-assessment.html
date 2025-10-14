@@ -403,36 +403,82 @@
     const form = document.getElementById("assessment-form");
     const statusMessage = document.getElementById("status-message");
 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTomPeDrZ-vDZyEC72wXeoeFpro0Z8zCD2OfgL9HxY7nBsokoieXxy4sT3n_O4x3iqhg/exec";
+    const ASSESSMENT_TITLE = "Year 10 Timber Technology Examination";
+    const ASSESSMENT_SHEET = "Assessment Responses";
+
+    const QUESTION_TEXTS = {
+      A1_hazards: "A1. Identify three workshop hazards specific to timber machining and outline a control measure for each.",
+      A2_sequence: "A2. When preparing to use the thicknesser, select the correct sequence of steps.",
+      A3_ppe_bandsaw: "A3. Explain how PPE and safe operating procedures work together to manage risk when using the bandsaw.",
+      B1_hardwood_comparison: "B1. Compare the properties of two Australian hardwood species suitable for furniture making.",
+      B2a_engineered_board: "B2(a). Engineered board selection for a cabinet carcass in a humid laundry.",
+      B2b_engineered_board: "B2(b). Engineered board selection for a curved drawer front.",
+      B3_moisture_stability: "B3. Describe how moisture content affects dimensional stability and strategies to minimise movement.",
+      C1_design_brief: "C1. Provide a concise design brief for a bedside table project that meets the needs of a teenage user.",
+      C2_workflow: "C2. Outline the workflow for producing the bedside table from raw stock to finished product.",
+      C3_drawing_description: "C3. Describe the orthographic drawing views, dimensions, and joinery details you would submit.",
+      D1_through_housing: "D1. Explain how to cut and assemble a through housing joint for a drawer divider.",
+      D2_joint_criteria: "D2. Inspection criteria used to judge the success of the finished joint.",
+      D3_drop_saw_order: "D3. List the correct order of operations for safely using the drop saw to cut identical components.",
+      E1_lifecycle: "E1. Analyse the environmental impact of the bedside table project across the timber lifecycle.",
+      E2_emerging_tech: "E2. Describe an emerging technology or smart feature that could be integrated into timber furniture.",
+      E3_responsible_forest: "E3. Statements that represent responsible forest management.",
+      F1_reflection: "F1. Reflect on growth in timber technology, identifying skills developed and areas for improvement.",
+      F2_safety_pledge: "F2. State the safety pledge for upholding best practice in the workshop next year."
+    };
+
+    const MULTI_VALUE_FIELDS = new Set(["E3_responsible_forest"]);
+
+    function buildResponses(formData) {
+      const responses = [];
+      Object.entries(QUESTION_TEXTS).forEach(([field, prompt]) => {
+        if (MULTI_VALUE_FIELDS.has(field)) {
+          const values = formData
+            .getAll(field)
+            .map((value) => (value || "").toString().trim())
+            .filter((value) => value.length);
+          responses.push({ question: prompt, answer: values.join("; ") });
+        } else {
+          const value = formData.get(field);
+          responses.push({ question: prompt, answer: value ? value.toString().trim() : "" });
+        }
+      });
+      return responses;
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const formData = new FormData(form);
-      const payload = {};
-      formData.forEach((value, key) => {
-        if (payload[key]) {
-          if (!Array.isArray(payload[key])) {
-            payload[key] = [payload[key]];
-          }
-          payload[key].push(value);
-        } else {
-          payload[key] = value;
-        }
-      });
+      if (form.dataset.submitting === "true") {
+        return;
+      }
+      form.dataset.submitting = "true";
 
-      const timestamp = new Date().toISOString();
-      payload.submitted_at = timestamp;
+      const formData = new FormData(form);
+
+      const studentName = (formData.get("student_name") || "").toString().trim();
+      const studentEmail = (formData.get("student_email") || "").toString().trim();
+      const classGroup = (formData.get("class_group") || "").toString().trim();
+      const teacher = (formData.get("teacher") || "").toString().trim();
 
       statusMessage.textContent = "Submitting your responses...";
       statusMessage.className = "status-message";
       statusMessage.style.display = "block";
 
-      try {
-        // Replace with your deployed Google Apps Script web app URL.
-        // Instructions: Create a Google Apps Script project connected to your Google Sheet.
-        // Publish it as a web app that accepts POST requests and write the payload to the sheet.
-        const scriptUrl = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+      const payload = {
+        sheetName: ASSESSMENT_SHEET,
+        assessmentType: ASSESSMENT_TITLE,
+        studentName,
+        studentEmail,
+        classGroup,
+        teacher,
+        responses: buildResponses(formData),
+        timestamp: new Date().toISOString()
+      };
 
-        const response = await fetch(scriptUrl, {
+      try {
+        await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: {
@@ -441,13 +487,14 @@
           body: JSON.stringify(payload)
         });
 
-        // With no-cors the response is opaque; we assume success if no error is thrown.
         statusMessage.textContent = "✅ Submission received. You may now close this tab.";
         statusMessage.classList.add("status-success");
       } catch (error) {
         console.error(error);
         statusMessage.textContent = "⚠️ There was a problem submitting your responses. Please notify your teacher immediately.";
         statusMessage.classList.add("status-error");
+      } finally {
+        form.dataset.submitting = "false";
       }
     });
   </script>
