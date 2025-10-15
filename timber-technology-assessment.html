@@ -482,25 +482,31 @@
           method: "POST",
           mode: "cors",
           headers: {
-            "Content-Type": "text/plain;charset=utf-8"
+            "Content-Type": "application/json",
+            Accept: "application/json, text/plain"
           },
           body: JSON.stringify(payload)
         });
 
         const rawBody = await response.text();
+        const sanitizedBody = rawBody.replace(/^\)\]\}'\s*/, "").trim();
 
         if (!response.ok) {
-          const errorText = rawBody.trim();
+          const errorText = sanitizedBody;
           throw new Error(errorText || `HTTP ${response.status}`);
         }
 
         let result = null;
-        if (rawBody.trim().length) {
+        if (sanitizedBody.length) {
           try {
-            result = JSON.parse(rawBody);
+            result = JSON.parse(sanitizedBody);
           } catch (parseError) {
-            console.error("Failed to parse server response", parseError);
-            throw new Error("Received an unexpected response from the server.");
+            console.error("Failed to parse server response", parseError, sanitizedBody);
+            if (/^success$/i.test(sanitizedBody)) {
+              result = { status: "success" };
+            } else {
+              throw new Error("Received an unexpected response from the server.");
+            }
           }
         }
 
