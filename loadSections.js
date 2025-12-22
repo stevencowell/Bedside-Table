@@ -9,7 +9,7 @@ const sections = [
 ];
 
 const weekCounts = {
-  'main-theory': 20,
+  'main-theory': 10,
   'support-activities': 10,
   'advanced-activities': 10
 };
